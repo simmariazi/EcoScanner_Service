@@ -1,7 +1,7 @@
 package model
 
 type MemberInfo struct {
-	memberNo int
-	memberId string
-	nickname string
+	MemberNo int
+	MemberId string
+	Nickname string
 }
