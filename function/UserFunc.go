@@ -22,7 +22,7 @@ func DeleteMemberInfo(isAuth bool, memberNo int) bool {
 	return result
 }
 
-func SelectMemeber() []model.MemberInfo {
+func SelectMember() []model.MemberInfo {
 	var members []model.Member
 	var memberInfo model.MemberInfo
 	var memberInfos []model.MemberInfo
@@ -38,7 +38,6 @@ func SelectMemeber() []model.MemberInfo {
 
 	return memberInfos
 
-	//return memberInfo
 }
 
 // func LoopObjectField(object interface{}) {
@@ -51,3 +50,22 @@ func SelectMemeber() []model.MemberInfo {
 // 			t.Name, t.Type, v.Interface(), t.Tag.Get("custom"))
 // 	}
 // }
+
+func SelectSeller() []model.SellerInfo {
+	var sellers []model.Seller
+	var sellerinfo model.SellerInfo
+	var sellerinfos []model.SellerInfo
+
+	sellers = db.CallSellerSelection()
+
+	for i := 0; i < len(sellers); i++ {
+		sellerinfo.SellerId = sellers[i].Id
+		sellerinfo.SellerName = sellers[i].Seller_name
+		sellerinfo.SellerIntroduction = sellers[i].Seller_url
+
+		sellerinfos = append(sellerinfos, sellerinfo)
+	}
+
+	return sellerinfos
+
+}

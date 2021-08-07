@@ -46,3 +46,38 @@ func CallMemberSelection() []model.Member {
 
 	return results
 }
+
+func CallSellerSelection() []model.Seller {
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	var result model.Seller
+	var results []model.Seller
+
+	rows, err := db.Query("SELECT * FROM seller")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&result.Id, &result.Seller_name, &result.Seller_url, &result.Create_date)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		results = append(results, result)
+
+	}
+
+	return results
+}

@@ -1,7 +1,7 @@
 package model
 
 type SellerInfo struct {
-	sellerId           int
-	sellerName         string
-	sellerIntroduction string
+	SellerId           int
+	SellerName         string
+	SellerIntroduction string
 }

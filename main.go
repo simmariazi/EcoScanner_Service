@@ -8,8 +8,13 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.GET("/seller", func(c *gin.Context) {
-		c.JSON(200, function.SelectMemeber())
+	r.GET("/member", func(c *gin.Context) {
+		c.JSON(200, function.SelectMember())
 	})
+
+	r.GET("/seller", func(c *gin.Context) {
+		c.JSON(200, function.SelectSeller())
+	})
+
 	r.Run()
 }
