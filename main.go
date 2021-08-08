@@ -2,6 +2,7 @@ package main
 
 import (
 	function "main/function"
+	"main/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,5 +21,13 @@ func main() {
 		c.JSON(200, function.GetProductSimpleList())
 	})
 
+	useApp(r)
+
 	r.Run()
+}
+
+func useApp(app *gin.Engine) {
+	app.Use(middlewares.CORSMiddleware())
+	app.Use(gin.Logger())
+	app.Use(gin.CustomRecovery(middlewares.RecoveryHandler))
 }
