@@ -22,8 +22,8 @@ func DeleteMemberInfo(isAuth bool, memberNo int) bool {
 	return result
 }
 
-func SelectMember() []model.MemberInfo {
-	var members []model.Member
+func GetMemberList() []model.MemberInfo {
+	var members []model.EntMember
 	var memberInfo model.MemberInfo
 	var memberInfos []model.MemberInfo
 	members = db.CallMemberSelection()
@@ -51,8 +51,8 @@ func SelectMember() []model.MemberInfo {
 // 	}
 // }
 
-func SelectSeller() []model.SellerInfo {
-	var sellers []model.Seller
+func GetSellerList() []model.SellerInfo {
+	var sellers []model.EntSeller
 	var sellerinfo model.SellerInfo
 	var sellerinfos []model.SellerInfo
 
@@ -67,5 +67,23 @@ func SelectSeller() []model.SellerInfo {
 	}
 
 	return sellerinfos
+
+}
+
+func GetProductSimpleList() []model.Product {
+	var products []model.EntProduct
+	var productSimple model.Product
+	var productsSimple []model.Product
+
+	products = db.CallProductSelection()
+
+	for i := 0; i < len(products); i++ {
+		productSimple.ProductId = products[i].Id
+		productSimple.ProductUrl = products[i].ProductUrl
+
+		productsSimple = append(productsSimple, productSimple)
+	}
+
+	return productsSimple
 
 }

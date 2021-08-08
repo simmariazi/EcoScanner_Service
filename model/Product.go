@@ -1,10 +1,10 @@
 package model
 
 type Product struct {
-	productId        int
-	productName      string
-	productUrl       string
-	productPrice     int
-	sellerInfo       SellerInfo
-	ecoCertification EcoCertification
+	ProductId        int
+	ProductName      string
+	ProductUrl       string
+	ProductPrice     int
+	SellerInfo       SellerInfo
+	EcoCertification EcoCertification
 }
