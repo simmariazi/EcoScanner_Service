@@ -3,6 +3,7 @@ package main
 import (
 	function "main/function"
 	"main/middlewares"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,7 +24,7 @@ func main() {
 
 	useApp(r)
 
-	r.Run()
+	r.Run(":" + os.Getenv("PORT"))
 }
 
 func useApp(app *gin.Engine) {
