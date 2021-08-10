@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 
 	model "main/model"
 
@@ -116,4 +117,33 @@ func CallProductSimpleSelection() []model.EntProductList {
 	}
 
 	return results
+}
+
+func FindSellerNameById(sellerId int) string {
+	db, err := sql.Open("mysql", connectionString)
+	var sellerName string = ""
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT * FROM seller WHERE id = " + strconv.Itoa(sellerId))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&sellerName)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	return sellerName
 }
