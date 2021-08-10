@@ -4,13 +4,14 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	model "main/model"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var connectionString string = "root:rladndwo3@tcp(121.166.4.186:3152)/eco_bot?charset=utf8"
+var connectionString string = os.Getenv("CONNECTION_STRING")
 
 func CallMemberSelection() []model.EntMember {
 	db, err := sql.Open("mysql", connectionString)
