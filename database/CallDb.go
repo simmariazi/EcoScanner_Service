@@ -96,7 +96,7 @@ func CallProductSelection() []model.EntProduct {
 	var result model.EntProduct
 	var results []model.EntProduct
 
-	rows, err := db.Query("SELECT * FROM seller")
+	rows, err := db.Query("SELECT * FROM product_list")
 
 	if err != nil {
 		log.Fatal(err)

@@ -2,7 +2,7 @@ package main
 
 import (
 	function "main/function"
-	"main/middlewares"
+	middlewares "main/middlewares"
 
 	"github.com/gin-gonic/gin"
 )

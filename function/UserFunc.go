@@ -79,6 +79,7 @@ func GetProductSimpleList() []model.Product {
 
 	for i := 0; i < len(products); i++ {
 		productSimple.ProductId = products[i].Id
+		productSimple.ProductThumbnail = products[i].Thumnail
 		productSimple.ProductUrl = products[i].ProductUrl
 
 		productsSimple = append(productsSimple, productSimple)
