@@ -83,7 +83,7 @@ func CallSellerSelection() []model.EntSeller {
 	return results
 }
 
-func CallProductSelection() []model.EntProduct {
+func CallProductSimpleSelection() []model.EntProductList {
 	db, err := sql.Open("mysql", connectionString)
 
 	if err != nil {
@@ -94,8 +94,8 @@ func CallProductSelection() []model.EntProduct {
 
 	defer db.Close()
 
-	var result model.EntProduct
-	var results []model.EntProduct
+	var result model.EntProductList
+	var results []model.EntProductList
 
 	rows, err := db.Query("SELECT * FROM product_list")
 
@@ -106,7 +106,7 @@ func CallProductSelection() []model.EntProduct {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&result.Id, &result.Thumnail, &result.ProductUrl)
+		err := rows.Scan(&result.Id, &result.Thumnail, &result.ProductUrl, &result.Seller_id, &result.Is_used)
 		if err != nil {
 			log.Fatal(err)
 		}

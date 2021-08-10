@@ -16,8 +16,10 @@ type EntMember struct {
 	Create_date string
 }
 
-type EntProduct struct {
+type EntProductList struct {
 	Id         int
 	Thumnail   string
 	ProductUrl string
+	Seller_id  int
+	Is_used    int
 }

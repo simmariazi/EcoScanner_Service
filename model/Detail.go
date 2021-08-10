@@ -1,7 +1,7 @@
 package model
 
 type Detail struct {
-	brand        string
-	manufacturer string
-	origin       string
+	Brand        string
+	Manufacturer string
+	Origin       string
 }

@@ -1,9 +1,9 @@
 package model
 
 type ReviewData struct {
-	reviewId     int
-	productId    int
-	contents     string
-	reviewRating int
-	reviewUrl    string
+	ReviewId     int
+	ProductId    int
+	Contents     string
+	ReviewRating int
+	ReviewUrl    string
 }
