@@ -1,6 +1,6 @@
 package model
 
 type EcoCertification struct {
-	text  string
-	badge int
+	Text  string
+	Badge int
 }

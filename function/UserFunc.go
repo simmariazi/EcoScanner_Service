@@ -71,15 +71,18 @@ func GetSellerList() []model.SellerInfo {
 }
 
 func GetProductSimpleList() []model.Product {
-	var products []model.EntProduct
+	var products []model.EntProductList
 	var productSimple model.Product
 	var productsSimple []model.Product
 
-	products = db.CallProductSelection()
+	products = db.CallProductSimpleSelection()
 
 	for i := 0; i < len(products); i++ {
 		productSimple.ProductId = products[i].Id
+		productSimple.ProductThumbnail = products[i].Thumnail
 		productSimple.ProductUrl = products[i].ProductUrl
+		productSimple.SellerInfo.SellerId = products[i].Seller_id
+		productSimple.IsUsed = products[i].Is_used
 
 		productsSimple = append(productsSimple, productSimple)
 	}
