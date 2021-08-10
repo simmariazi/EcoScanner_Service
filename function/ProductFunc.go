@@ -27,6 +27,7 @@ func GetProductSimpleList() []model.Product {
 		// SellerInfo
 		sellerInfo.SellerId = products[i].Seller_id
 		sellerInfo.SellerName = GetSellerName(products[i].Seller_id)
+		// 상품 조회시에는 빈 값
 		sellerInfo.SellerIntroduction = ""
 		productSimple.SellerInfo = sellerInfo
 
