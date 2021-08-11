@@ -26,6 +26,7 @@ func GetMemberList() []model.MemberInfo {
 	var members []model.EntMember
 	var memberInfo model.MemberInfo
 	var memberInfos []model.MemberInfo
+
 	members = db.CallMemberSelection()
 
 	for i := 0; i < len(members); i++ {
