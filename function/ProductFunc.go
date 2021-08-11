@@ -20,6 +20,8 @@ func GetProductSimpleList() []model.Product {
 			continue
 		}
 
+		productSimple.IsUsed = 1
+
 		productSimple.ProductId = products[i].Id
 		productSimple.ProductThumbnail = products[i].Thumnail
 		productSimple.ProductUrl = products[i].ProductUrl

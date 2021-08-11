@@ -133,7 +133,7 @@ func FindSellerNameById(sellerId int) string {
 
 	defer db.Close()
 
-	rows, err := db.Query("SELECT * FROM seller WHERE id = " + strconv.Itoa(sellerId))
+	rows, err := db.Query("SELECT seller_name FROM seller WHERE id = " + strconv.Itoa(sellerId))
 
 	if err != nil {
 		log.Fatal(err)
