@@ -6,7 +6,7 @@ type Product struct {
 	ProductThumbnail string
 	ProductUrl       string
 	ProductPrice     int
-	SellerInfo       SellerInfo
-	EcoCertification EcoCertification
+	Seller           SellerInfo
+	EcoCert          EcoCertification
 	IsUsed           int
 }

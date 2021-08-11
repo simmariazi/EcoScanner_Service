@@ -23,3 +23,21 @@ type EntProductList struct {
 	Seller_id  int
 	Is_used    int
 }
+
+type EntProductDetail struct {
+	Id                int
+	Name              string
+	Productcode       string
+	Mainimage         string
+	Description       string
+	Detail            string
+	Deliveryinfo      string
+	Price             int
+	Option            string
+	Seller_id         int
+	Eco_certification string
+	Create_date       string
+	Update_date       string
+	Status            int
+	Product_url       string
+}

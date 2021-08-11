@@ -23,16 +23,21 @@ func GetProductSimpleList() []model.Product {
 		productSimple.ProductId = products[i].Id
 		productSimple.ProductThumbnail = products[i].Thumnail
 		productSimple.ProductUrl = products[i].ProductUrl
+		productSimple.ProductName = db.FindProductNameById(products[i].Id)
 
 		// SellerInfo
 		sellerInfo.SellerId = products[i].Seller_id
 		sellerInfo.SellerName = GetSellerName(products[i].Seller_id)
 		// 상품 조회시에는 빈 값
 		sellerInfo.SellerIntroduction = ""
-		productSimple.SellerInfo = sellerInfo
+		productSimple.Seller = sellerInfo
 
 		productsSimple = append(productsSimple, productSimple)
 	}
 
 	return productsSimple
+}
+
+func GetProductName(productId int) string {
+	return db.FindProductNameById(productId)
 }
