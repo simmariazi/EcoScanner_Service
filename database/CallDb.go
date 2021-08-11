@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"os"
 	"strconv"
 
 	model "main/model"
@@ -12,7 +11,11 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var connectionString string = os.Getenv("CONNECTION_STRING")
+var connectionString string = ""
+
+func InitConnectionString(connection string) {
+	connectionString = connection
+}
 
 func CallMemberSelection() []model.EntMember {
 	db, err := sql.Open("mysql", connectionString)
