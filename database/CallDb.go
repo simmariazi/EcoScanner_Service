@@ -147,3 +147,32 @@ func FindSellerNameById(sellerId int) string {
 
 	return sellerName
 }
+
+func FindProductNameById(productId int) string {
+	db, err := sql.Open("mysql", connectionString)
+	var productName string = ""
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT * FROM product WHERE id = " + strconv.Itoa(productId))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&productName)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	return productName
+}

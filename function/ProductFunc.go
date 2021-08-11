@@ -23,6 +23,7 @@ func GetProductSimpleList() []model.Product {
 		productSimple.ProductId = products[i].Id
 		productSimple.ProductThumbnail = products[i].Thumnail
 		productSimple.ProductUrl = products[i].ProductUrl
+		productSimple.ProductName = db.FindProductNameById(products[i].Id)
 
 		// SellerInfo
 		sellerInfo.SellerId = products[i].Seller_id
@@ -35,4 +36,8 @@ func GetProductSimpleList() []model.Product {
 	}
 
 	return productsSimple
+}
+
+func GetProductName(productId int) string {
+	return db.FindProductNameById(productId)
 }
