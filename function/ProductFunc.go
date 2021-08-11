@@ -29,7 +29,7 @@ func GetProductSimpleList() []model.Product {
 		sellerInfo.SellerName = GetSellerName(products[i].Seller_id)
 		// 상품 조회시에는 빈 값
 		sellerInfo.SellerIntroduction = ""
-		productSimple.SellerInfo = sellerInfo
+		productSimple.Seller = sellerInfo
 
 		productsSimple = append(productsSimple, productSimple)
 	}
