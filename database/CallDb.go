@@ -230,7 +230,7 @@ func FindDeliveryInfoByDeliveryId(deliveryId int) model.DeliveryInfo {
 
 	defer db.Close()
 
-	rows, err := db.Query("SELECT * FROM product WHERE id = " + strconv.Itoa(deliveryId))
+	rows, err := db.Query("SELECT * FROM deliveryinfo WHERE id = " + strconv.Itoa(deliveryId))
 
 	if err != nil {
 		log.Fatal(err)
