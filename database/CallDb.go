@@ -179,3 +179,40 @@ func FindProductNameById(productId int) string {
 
 	return productName
 }
+
+func CallProductDetailSelection() []model.EntProductDetail {
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	var result model.EntProductDetail
+	var results []model.EntProductDetail
+
+	rows, err := db.Query("SELECT * FROM product")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&result.Id, &result.Name, &result.Productcode, &result.Mainimage, &result.Description, &result.Detail,
+			&result.Deliveryinfo, &result.Price, &result.Option, &result.Seller_id, &result.Eco_certification, &result.Create_date,
+			&result.Update_date, &result.Status, &result.Product_url)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		results = append(results, result)
+
+	}
+
+	return results
+}
