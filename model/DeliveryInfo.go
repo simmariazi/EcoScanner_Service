@@ -1,6 +1,7 @@
 package model
 
 type DeliveryInfo struct {
-	DeliveryTime int
+	DeliveryId   int
+	DeliveryTime string
 	ShippingFee  int
 }

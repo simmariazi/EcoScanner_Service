@@ -6,10 +6,12 @@ type ProductDetail struct {
 	ProductName   string
 	ProductUrl    string
 	Description   string
-	Detail        Detail
-	DeliveryInfo  DeliveryInfo
+	IsUsed        int
+	Detail        DetailInfo
+	Delivery      DeliveryInfo
 	ProductPrice  int
-	ProductOption []string
+	ProductOption string
 	Seller        SellerInfo
 	EcoCert       EcoCertification
+	Thumnail      string
 }

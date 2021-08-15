@@ -30,8 +30,8 @@ type EntProductDetail struct {
 	Productcode       string
 	Mainimage         string
 	Description       string
-	Detail            string
-	Deliveryinfo      string
+	Detail_id         int
+	Delivery_id       int
 	Price             int
 	Option            string
 	Seller_id         int

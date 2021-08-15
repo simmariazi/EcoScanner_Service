@@ -1,6 +1,7 @@
 package model
 
-type Detail struct {
+type DetailInfo struct {
+	DetailId     int
 	Brand        string
 	Manufacturer string
 	Origin       string

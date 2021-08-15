@@ -203,8 +203,8 @@ func CallProductDetailSelection() []model.EntProductDetail {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&result.Id, &result.Name, &result.Productcode, &result.Mainimage, &result.Description, &result.Detail,
-			&result.Deliveryinfo, &result.Price, &result.Option, &result.Seller_id, &result.Eco_certification, &result.Create_date,
+		err := rows.Scan(&result.Id, &result.Name, &result.Productcode, &result.Mainimage, &result.Description, &result.Detail_id,
+			&result.Delivery_id, &result.Price, &result.Option, &result.Seller_id, &result.Eco_certification, &result.Create_date,
 			&result.Update_date, &result.Status, &result.Product_url)
 		if err != nil {
 			log.Fatal(err)
@@ -215,4 +215,35 @@ func CallProductDetailSelection() []model.EntProductDetail {
 	}
 
 	return results
+}
+
+func FindDeliveryInfoByDeliveryId(deliveryId int) model.DeliveryInfo {
+	db, err := sql.Open("mysql", connectionString)
+
+	var deliveryInfo model.DeliveryInfo
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT * FROM product WHERE id = " + strconv.Itoa(deliveryId))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&deliveryInfo)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	return deliveryInfo
 }
