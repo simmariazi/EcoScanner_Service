@@ -73,7 +73,11 @@ func GetProductDetailList() []model.ProductDetail {
 		deliveryInfo.DeliveryTime = (db.FindDeliveryInfoByDeliveryId(products[i].Delivery_id).DeliveryTime)
 		deliveryInfo.ShippingFee = (db.FindDeliveryInfoByDeliveryId(products[i].Delivery_id).ShippingFee)
 
-		// DetailInfo -> 컬럼 3개 아니어서 물어봐야됨
+		// DetailInfo
+		detailInfo.DetailId = products[i].Detail_id
+		detailInfo.Brand = (db.FindDetailInfoByDetailId(products[i].Detail_id).Brand)
+		detailInfo.Manufacturer = (db.FindDetailInfoByDetailId(products[i].Detail_id).Manufacturer)
+		detailInfo.Origin = (db.FindDetailInfoByDetailId(products[i].Detail_id).Origin)
 
 		// Ecocertification info
 

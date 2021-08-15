@@ -247,3 +247,34 @@ func FindDeliveryInfoByDeliveryId(deliveryId int) model.DeliveryInfo {
 
 	return deliveryInfo
 }
+
+func FindDetailInfoByDetailId(detailId int) model.DetailInfo {
+	db, err := sql.Open("mysql", connectionString)
+
+	var detailInfo model.DetailInfo
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT * FROM detail WHERE id = " + strconv.Itoa(detailId))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&detailInfo)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	return detailInfo
+}
