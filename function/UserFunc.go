@@ -77,3 +77,23 @@ func AddwishListSeller(memberNo int, sellerId int) string {
 	}
 
 }
+
+func DeleteWishList(memberNo int, id int, itemType string, allOrNot bool) {
+
+	if itemType == "product" {
+
+		if allOrNot == true {
+			db.DeleteAllWishListProduct(memberNo)
+		} else {
+			db.DeleteWishListProduct(memberNo, id)
+		}
+
+	} else {
+		if allOrNot == true {
+			db.DeleteAllWishListSeller(memberNo)
+		} else {
+			db.DeleteWishListSeller(memberNo, id)
+		}
+	}
+
+}

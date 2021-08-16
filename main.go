@@ -52,6 +52,15 @@ func main() {
 		c.JSON(200, function.AddwishListSeller(memberNo, sellerId))
 	})
 
+	r.DELETE("/wishlist/:type/:memberno", func(c *gin.Context) {
+		memberNo, _ := strconv.Atoi(c.Param("memberno"))
+		itemType := c.Param("type")
+		allOrNot, _ := strconv.ParseBool(c.Query("allOrNot"))
+		id, _ := strconv.Atoi(c.Query("id"))
+		function.DeleteWishList(memberNo, id, itemType, allOrNot)
+		c.JSON(200, "삭제 완료")
+	})
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))

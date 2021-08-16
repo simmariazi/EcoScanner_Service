@@ -381,3 +381,70 @@ func AddwishListSeller(memberNo int, sellerId int) int {
 	return 1
 
 }
+
+func DeleteAllWishListProduct(memberNo int) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	db.Exec("DELETE FROM wishlist_product wp WHERE member_no =" + strconv.Itoa(memberNo))
+
+}
+
+func DeleteWishListProduct(memberNo int, productId int) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	_, err = db.Exec("DELETE FROM wishlist_product wp WHERE member_no =" + strconv.Itoa(memberNo) + " AND product_id = " + strconv.Itoa(productId))
+
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+}
+
+func DeleteAllWishListSeller(memberNo int) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	db.Exec("DELETE FROM wishlist_seller WHERE member_no =" + strconv.Itoa(memberNo))
+
+}
+
+func DeleteWishListSeller(memberNo int, sellerId int) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	db.Exec("DELETE FROM wishlist_seller WHERE member_no =" + strconv.Itoa(memberNo) + " AND seller_id = " + strconv.Itoa(sellerId))
+
+}
