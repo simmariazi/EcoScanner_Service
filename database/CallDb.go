@@ -349,7 +349,7 @@ func AddWishListProduct(memberNo int, productId int) int {
 	db.QueryRow("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'isAdd' FROM wishlist_product wp WHERE member_no =" + strconv.Itoa(memberNo) + " AND product_id =" + strconv.Itoa(productId)).Scan(&isAdd)
 
 	if isAdd == 1 {
-		db.Exec("INSERT into wishlist_product (member_no, product_id) values (memberNo, productId)")
+		db.Exec("INSERT into wishlist_product (member_no, product_id) values (" + strconv.Itoa(memberNo) + "," + strconv.Itoa(productId) + ")")
 	} else {
 		return 0
 	}
@@ -373,7 +373,7 @@ func AddwishListSeller(memberNo int, sellerId int) int {
 	db.QueryRow("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'isAdd' FROM wishlist_seller ws WHERE member_no =" + strconv.Itoa(memberNo) + " AND seller_id =" + strconv.Itoa(sellerId)).Scan(&isAdd)
 
 	if isAdd == 1 {
-		db.Exec("INSERT into wishlist_seller ws (member_no, seller_id) values (" + strconv.Itoa(memberNo) + ", " + strconv.Itoa(sellerId) + ")")
+		db.Exec("INSERT into wishlist_seller (member_no, seller_id) values (" + strconv.Itoa(memberNo) + ", " + strconv.Itoa(sellerId) + ")")
 	} else {
 		return 0
 	}
