@@ -47,7 +47,7 @@ func GetProductDetailList() []model.ProductDetail {
 	var detailInfo model.DetailInfo
 	var deliveryInfo model.DeliveryInfo
 	var sellerInfo model.SellerInfo
-	var ecoCertification model.EcoCertification
+	//var ecoCertification model.EcoCertification
 
 	products = db.CallProductDetailSelection()
 

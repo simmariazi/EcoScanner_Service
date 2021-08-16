@@ -5,6 +5,7 @@ import (
 	function "main/function"
 	"main/middlewares"
 	"os"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -29,6 +30,12 @@ func main() {
 
 	r.GET("/productsimple", func(c *gin.Context) {
 		c.JSON(200, function.GetProductSimpleList())
+	})
+
+	r.GET("/wishlist/:memberno", func(c *gin.Context) {
+		id, _ := strconv.Atoi(c.Param("memberno"))
+
+		c.JSON(200, function.GetWishList(id))
 	})
 
 	useApp(r)

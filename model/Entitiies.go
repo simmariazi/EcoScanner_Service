@@ -41,3 +41,21 @@ type EntProductDetail struct {
 	Status            int
 	Product_url       string
 }
+
+type EntDeliveryInfo struct {
+	Id           int
+	DeliveryTime string
+	ShippingFee  int
+}
+
+type EntWishListProduct struct {
+	MemberNo    int
+	Product_id  int
+	Create_date string
+}
+
+type EntWishListSeller struct {
+	MemberNo    int
+	Seller_id   int
+	Create_date string
+}

@@ -41,6 +41,10 @@ func GetMemberList() []model.MemberInfo {
 
 }
 
+func GetWishList(memberno int) []model.WishListData {
+	return db.FindWishListById(memberno)
+}
+
 // func LoopObjectField(object interface{}) {
 // 	e := reflect.ValueOf(object).Elem()
 // 	fieldNum := e.NumField()
@@ -51,3 +55,7 @@ func GetMemberList() []model.MemberInfo {
 // 			t.Name, t.Type, v.Interface(), t.Tag.Get("custom"))
 // 	}
 // }
+
+func AddWishListProduct() {
+
+}

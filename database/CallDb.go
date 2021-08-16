@@ -278,3 +278,77 @@ func FindDetailInfoByDetailId(detailId int) model.DetailInfo {
 
 	return detailInfo
 }
+
+func FindWishListById(memberno int) []model.WishListData {
+	db, err := sql.Open("mysql", connectionString)
+
+	var wishlistData model.WishListData
+	var wishlistsData []model.WishListData
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query(`SELECT 'product'           as 'type'
+	, p.name              as 'name'
+	, p.mainImage         as 'thumbnail'
+	, p.price             as 'price'
+	, p.eco_certification as 'ecoInfo'
+	, p.product_url       as 'url'
+ FROM wishlist_product wp
+	, product p
+WHERE wp.member_no =` + strconv.Itoa(memberno) +
+		` AND wp.product_id = p.id
+UNION ALL
+SELECT 'seller'            as 'type'
+	, s.seller_name       as 'name'
+	, ''                  as 'thumbnail'
+	, 0                  as 'price'
+	, ''                  as 'ecoInfo'
+	, s.seller_url        as 'url'
+ FROM wishlist_seller ws
+	, seller s
+WHERE ws.member_no =` + strconv.Itoa(memberno) +
+		` AND ws.seller_id = s.id;`)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&wishlistData.Itemtype, &wishlistData.Name, &wishlistData.Thumbnail,
+			&wishlistData.Price, &wishlistData.EcoInfo, &wishlistData.Url)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		wishlistsData = append(wishlistsData, wishlistData)
+
+	}
+
+	return wishlistsData
+}
+
+/*func AddWishListProduct(memberNo int, productId int) string {
+	db, err := sql.Open("mysql", connectionString)
+	var isAdd int
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'Add' FROM wishlist_product wp WHERE member_no = 1004 AND product_id = 263;", &isAdd)
+
+
+	return wishlistsData
+
+}*/
