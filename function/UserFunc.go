@@ -66,3 +66,14 @@ func AddWishListProduct(memberNo int, productId int) string {
 	}
 
 }
+
+func AddwishListSeller(memberNo int, sellerId int) string {
+	isAdd := db.AddwishListSeller(memberNo, sellerId)
+
+	if isAdd == 1 {
+		return "찜 성공"
+	} else {
+		return "찜 실패"
+	}
+
+}

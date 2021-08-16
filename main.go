@@ -38,11 +38,18 @@ func main() {
 		c.JSON(200, function.GetWishList(id))
 	})
 
-	r.PUT("/wishlist", func(c *gin.Context) {
+	r.PUT("/wishlist/product", func(c *gin.Context) {
 		memberNo, _ := strconv.Atoi(c.Query("memberNo"))
 		productId, _ := strconv.Atoi(c.Query("productId"))
 
 		c.JSON(200, function.AddWishListProduct(memberNo, productId))
+	})
+
+	r.PUT("/wishlist/seller", func(c *gin.Context) {
+		memberNo, _ := strconv.Atoi(c.Query("memberNo"))
+		sellerId, _ := strconv.Atoi(c.Query("sellerId"))
+
+		c.JSON(200, function.AddwishListSeller(memberNo, sellerId))
 	})
 
 	useApp(r)

@@ -346,10 +346,34 @@ func AddWishListProduct(memberNo int, productId int) int {
 
 	defer db.Close()
 
-	db.QueryRow("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'Add' FROM wishlist_product wp WHERE member_no = 1004 AND product_id = 263;").Scan(&isAdd)
+	db.QueryRow("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'isAdd' FROM wishlist_product wp WHERE member_no =" + strconv.Itoa(memberNo) + " AND product_id =" + strconv.Itoa(productId)).Scan(&isAdd)
 
 	if isAdd == 1 {
 		db.Exec("INSERT into wishlist_product (member_no, product_id) values (memberNo, productId)")
+	} else {
+		return 0
+	}
+
+	return 1
+
+}
+
+func AddwishListSeller(memberNo int, sellerId int) int {
+
+	db, err := sql.Open("mysql", connectionString)
+	var isAdd int
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	db.QueryRow("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'isAdd' FROM wishlist_seller ws WHERE member_no =" + strconv.Itoa(memberNo) + " AND product_id =" + strconv.Itoa(sellerId)).Scan(&isAdd)
+
+	if isAdd == 1 {
+		db.Exec("INSERT into wishlist_seller ws (member_no, product_id) values (memberNo, productId)")
 	} else {
 		return 0
 	}
