@@ -56,6 +56,13 @@ func GetWishList(memberno int) []model.WishListData {
 // 	}
 // }
 
-func AddWishListProduct() {
+func AddWishListProduct(memberNo int, productId int) string {
+	isAdd := db.AddWishListProduct(memberNo, productId)
+
+	if isAdd == 1 {
+		return "찜 성공"
+	} else {
+		return "찜 실패"
+	}
 
 }

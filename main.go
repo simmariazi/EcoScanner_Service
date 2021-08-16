@@ -38,6 +38,13 @@ func main() {
 		c.JSON(200, function.GetWishList(id))
 	})
 
+	r.PUT("/wishlist", func(c *gin.Context) {
+		memberNo, _ := strconv.Atoi(c.Query("memberNo"))
+		productId, _ := strconv.Atoi(c.Query("productId"))
+
+		c.JSON(200, function.AddWishListProduct(memberNo, productId))
+	})
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))

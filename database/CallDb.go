@@ -335,7 +335,7 @@ WHERE ws.member_no =` + strconv.Itoa(memberno) +
 	return wishlistsData
 }
 
-/*func AddWishListProduct(memberNo int, productId int) string {
+func AddWishListProduct(memberNo int, productId int) int {
 	db, err := sql.Open("mysql", connectionString)
 	var isAdd int
 	if err != nil {
@@ -346,9 +346,14 @@ WHERE ws.member_no =` + strconv.Itoa(memberno) +
 
 	defer db.Close()
 
-	rows, err := db.Query("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'Add' FROM wishlist_product wp WHERE member_no = 1004 AND product_id = 263;", &isAdd)
+	db.QueryRow("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'Add' FROM wishlist_product wp WHERE member_no = 1004 AND product_id = 263;").Scan(&isAdd)
 
+	if isAdd == 1 {
+		db.Exec("INSERT into wishlist_product (member_no, product_id) values (memberNo, productId)")
+	} else {
+		return 0
+	}
 
-	return wishlistsData
+	return 1
 
-}*/
+}
