@@ -370,10 +370,10 @@ func AddwishListSeller(memberNo int, sellerId int) int {
 
 	defer db.Close()
 
-	db.QueryRow("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'isAdd' FROM wishlist_seller ws WHERE member_no =" + strconv.Itoa(memberNo) + " AND product_id =" + strconv.Itoa(sellerId)).Scan(&isAdd)
+	db.QueryRow("SELECT IF(COUNT(*)>0,FALSE ,TRUE) as 'isAdd' FROM wishlist_seller ws WHERE member_no =" + strconv.Itoa(memberNo) + " AND seller_id =" + strconv.Itoa(sellerId)).Scan(&isAdd)
 
 	if isAdd == 1 {
-		db.Exec("INSERT into wishlist_seller ws (member_no, product_id) values (memberNo, productId)")
+		db.Exec("INSERT into wishlist_seller ws (member_no, seller_id) values (" + strconv.Itoa(memberNo) + ", " + strconv.Itoa(sellerId) + ")")
 	} else {
 		return 0
 	}
