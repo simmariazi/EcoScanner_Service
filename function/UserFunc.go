@@ -82,14 +82,14 @@ func DeleteWishList(memberNo int, id int, itemType string, allOrNot bool) {
 
 	if itemType == "product" {
 
-		if allOrNot == true {
+		if allOrNot {
 			db.DeleteAllWishListProduct(memberNo)
 		} else {
 			db.DeleteWishListProduct(memberNo, id)
 		}
 
 	} else {
-		if allOrNot == true {
+		if allOrNot {
 			db.DeleteAllWishListSeller(memberNo)
 		} else {
 			db.DeleteWishListSeller(memberNo, id)
