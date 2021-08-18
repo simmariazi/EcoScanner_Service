@@ -61,6 +61,12 @@ func main() {
 		c.JSON(200, "삭제 완료")
 	})
 
+	r.GET("/product/compare", func(c *gin.Context) {
+		productId := c.Query("productId")
+
+		c.JSON(200, function.GetCompareProduct(productId))
+	})
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))

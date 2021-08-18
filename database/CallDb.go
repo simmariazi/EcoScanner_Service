@@ -448,3 +448,40 @@ func DeleteWishListSeller(memberNo int, sellerId int) {
 	db.Exec("DELETE FROM wishlist_seller WHERE member_no =" + strconv.Itoa(memberNo) + " AND seller_id = " + strconv.Itoa(sellerId))
 
 }
+
+func CompareProductDetail(productId string) []model.ProductDetail {
+
+	var compareproduct model.ProductDetail
+	var compareproducts []model.ProductDetail
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT id, name, mainImage, price, product_url FROM product WHERE id IN(" + productId + ")")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&compareproduct.ProductId, &compareproduct.ProductName,
+			&compareproduct.Thumbnail, &compareproduct.ProductPrice, &compareproduct.ProductUrl)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		compareproducts = append(compareproducts, compareproduct)
+
+	}
+
+	return compareproducts
+}

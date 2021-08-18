@@ -63,7 +63,7 @@ func GetProductDetailList() []model.ProductDetail {
 		productDetail.ProductId = products[i].Id
 		productDetail.ProductName = products[i].Name
 		productDetail.ProductCode = products[i].Productcode
-		productDetail.Thumnail = products[i].Mainimage
+		productDetail.Thumbnail = products[i].Mainimage
 		productDetail.Description = products[i].Description
 		productDetail.ProductPrice = products[i].Price
 		productDetail.ProductOption = products[i].Option
@@ -96,4 +96,8 @@ func GetProductDetailList() []model.ProductDetail {
 
 func GetProductName(productId int) string {
 	return db.FindProductNameById(productId)
+}
+
+func GetCompareProduct(productId string) []model.ProductDetail {
+	return db.CompareProductDetail(productId)
 }
