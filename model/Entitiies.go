@@ -40,6 +40,8 @@ type EntProductDetail struct {
 	Update_date       string
 	Status            int
 	Product_url       string
+	DeliveryTime      string
+	ShippingFee       int
 }
 
 type EntDeliveryInfo struct {
