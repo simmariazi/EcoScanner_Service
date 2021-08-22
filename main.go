@@ -67,6 +67,10 @@ func main() {
 		c.JSON(200, function.GetCompareProduct(productId))
 	})
 
+	r.GET("/board", func(c *gin.Context) {
+		c.JSON(200, function.GetBoardList())
+	})
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))

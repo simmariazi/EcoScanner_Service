@@ -1,7 +1,11 @@
 package model
 
 type Recommend struct {
-	RecommendId int
-	Title       string
-	Contents    string
+	BoardId    int
+	MemberNo   int
+	Nickname   string
+	Title      string
+	Contents   string
+	CreateDate string
+	UpdateDate string
 }

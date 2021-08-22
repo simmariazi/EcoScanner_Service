@@ -485,3 +485,68 @@ func CompareProductDetail(productId string) []model.ProductDetail {
 
 	return compareproducts
 }
+
+func CallBoardList(boardId int) []model.EntBoardRecommend {
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	var result model.EntBoardRecommend
+	var results []model.EntBoardRecommend
+
+	rows, err := db.Query("SELECT * FROM board_recommend")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&result.Id, &result.Member_no, &result.Title, &result.Contents, &result.Create_date, &result.Update_date)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		results = append(results, result)
+
+	}
+
+	return results
+
+}
+
+func FindMemberNameByMemnerNo(memberNo int) string {
+	db, err := sql.Open("mysql", connectionString)
+	var memberName string = ""
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT nickname FROM member WHERE id = " + strconv.Itoa(memberNo))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&memberName)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	return memberName
+}

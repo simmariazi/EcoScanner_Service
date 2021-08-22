@@ -59,3 +59,12 @@ type EntWishListSeller struct {
 	Seller_id   int
 	Create_date string
 }
+
+type EntBoardRecommend struct {
+	Id          int
+	Member_no   int
+	Title       string
+	Contents    string
+	Create_date string
+	Update_date string
+}
