@@ -1,9 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"main/database"
 	function "main/function"
 	"main/middlewares"
+	"main/model"
 	"os"
 	"strconv"
 
@@ -69,6 +71,36 @@ func main() {
 
 	r.GET("/board", func(c *gin.Context) {
 		c.JSON(200, function.GetBoardList())
+	})
+
+	r.PUT("/board/post", func(c *gin.Context) {
+		var board model.Board
+		json.NewDecoder(c.Request.Body).Decode(&board)
+
+		memberNo := board.MemberNo
+		title := board.Title
+		contents := board.Contents
+
+		function.WriteBoardPost(memberNo, title, contents)
+		c.JSON(200, "success")
+	})
+
+	r.GET("/board/post", func(c *gin.Context) {
+		boardId, _ := strconv.Atoi(c.Query("boardId"))
+		c.JSON(200, function.GetBoardPost(boardId))
+	})
+
+	r.POST("/board/post", func(c *gin.Context) {
+		var board model.BoardUpdate
+		json.NewDecoder(c.Request.Body).Decode(&board)
+
+		id := board.Id
+		memberNo := board.MemberNo
+		title := board.Title
+		contents := board.Contents
+
+		function.ModifyBoardPost(id, memberNo, title, contents)
+		c.JSON(200, "success")
 	})
 
 	useApp(r)

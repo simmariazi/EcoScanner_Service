@@ -1,7 +1,7 @@
 package model
 
 type Recommend struct {
-	BoardId    int
+	Id         int
 	MemberNo   int
 	Nickname   string
 	Title      string

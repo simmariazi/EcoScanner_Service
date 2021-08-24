@@ -522,7 +522,7 @@ func CallBoardList(boardId int) []model.EntBoardRecommend {
 
 }
 
-func FindMemberNameByMemnerNo(memberNo int) string {
+func FindMemberNameByMemberNo(memberNo int) string {
 	db, err := sql.Open("mysql", connectionString)
 	var memberName string = ""
 	if err != nil {
@@ -549,4 +549,78 @@ func FindMemberNameByMemnerNo(memberNo int) string {
 	}
 
 	return memberName
+}
+
+func AddRecommendPost(memberNo int, title string, contents string) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	db.Exec("INSERT into board_recommend (member_no, title, contents) values (" + strconv.Itoa(memberNo) + ", '" + title + "' , '" + contents + "' )")
+
+}
+
+func FindPostById(boardId int) model.Recommend {
+
+	var result model.Recommend
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query(`SELECT br.id
+								, m.nickname 
+								, br.title
+								, br.contents 
+								, br.create_date 
+								, br.update_date 
+ 							FROM board_recommend br
+								, member m 
+							WHERE br.member_no = m.member_no
+							  AND br.id = ` + strconv.Itoa(boardId))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&result.Id, &result.Nickname, &result.Title, &result.Contents, &result.CreateDate, &result.UpdateDate)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	return result
+
+}
+
+func ModifyRecommendPost(boardId int, memberNo int, title string, contents string) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	db.Exec("UPDATE board_recommend br SET title = '" + title + "', contents = '" + contents + "', update_date = NOW() WHERE br.id = " + strconv.Itoa(boardId) + " AND br.member_no = " + strconv.Itoa(memberNo))
+
 }
