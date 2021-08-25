@@ -70,3 +70,13 @@ type EntBoardRecommend struct {
 	Create_date string
 	Update_date string
 }
+
+type EntProductReview struct {
+	Id            int
+	Member_no     int
+	Product_id    int
+	Contents      string
+	Review_rating int
+	Create_date   string
+	Update_date   string
+}

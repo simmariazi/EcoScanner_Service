@@ -2,8 +2,10 @@ package model
 
 type ReviewData struct {
 	ReviewId     int
+	MemberNo     int
 	ProductId    int
 	Contents     string
 	ReviewRating int
-	ReviewUrl    string
+	CreateDate   string
+	UpdateDate   string
 }

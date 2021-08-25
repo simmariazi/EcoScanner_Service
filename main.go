@@ -110,6 +110,10 @@ func main() {
 		c.JSON(200, "삭제 완료")
 	})
 
+	r.GET("/review", func(c *gin.Context) {
+		c.JSON(200, function.GetReviewList())
+	})
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))

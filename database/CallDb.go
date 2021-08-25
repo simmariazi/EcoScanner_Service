@@ -640,3 +640,38 @@ func DeleteRecommendPost(boardId int, memberNo int) {
 	db.Exec("DELETE FROM board_recommend br WHERE id =" + strconv.Itoa(boardId) + " AND member_no =" + strconv.Itoa(memberNo))
 
 }
+
+func CallReviewList() []model.EntProductReview {
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	var result model.EntProductReview
+	var results []model.EntProductReview
+
+	rows, err := db.Query("SELECT * FROM product_review pr")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&result.Id, &result.Member_no, &result.Product_id, &result.Contents, &result.Review_rating, &result.Create_date, &result.Update_date)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		results = append(results, result)
+
+	}
+
+	return results
+}
