@@ -624,3 +624,19 @@ func ModifyRecommendPost(boardId int, memberNo int, title string, contents strin
 	db.Exec("UPDATE board_recommend br SET title = '" + title + "', contents = '" + contents + "', update_date = NOW() WHERE br.id = " + strconv.Itoa(boardId) + " AND br.member_no = " + strconv.Itoa(memberNo))
 
 }
+
+func DeleteRecommendPost(boardId int, memberNo int) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	db.Exec("DELETE FROM board_recommend br WHERE id =" + strconv.Itoa(boardId) + " AND member_no =" + strconv.Itoa(memberNo))
+
+}
