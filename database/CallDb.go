@@ -486,7 +486,7 @@ func CompareProductDetail(productId string) []model.ProductDetail {
 	return compareproducts
 }
 
-func CallBoardList(boardId int) []model.EntBoardRecommend {
+func CallBoardList() []model.EntBoardRecommend {
 	db, err := sql.Open("mysql", connectionString)
 
 	if err != nil {
@@ -533,7 +533,7 @@ func FindMemberNameByMemberNo(memberNo int) string {
 
 	defer db.Close()
 
-	rows, err := db.Query("SELECT nickname FROM member WHERE id = " + strconv.Itoa(memberNo))
+	rows, err := db.Query("SELECT nickname FROM member WHERE member_no = " + strconv.Itoa(memberNo))
 
 	if err != nil {
 		log.Fatal(err)

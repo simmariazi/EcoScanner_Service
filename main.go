@@ -103,6 +103,13 @@ func main() {
 		c.JSON(200, "success")
 	})
 
+	r.DELETE("/board", func(c *gin.Context) {
+		boardId, _ := strconv.Atoi(c.Query("boardId"))
+		memberNo, _ := strconv.Atoi(c.Query("memberNo"))
+		function.DeleteBoardPost(boardId, memberNo)
+		c.JSON(200, "삭제 완료")
+	})
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))

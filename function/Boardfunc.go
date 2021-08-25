@@ -6,9 +6,12 @@ import (
 )
 
 func GetBoardList() []model.Recommend {
+
 	var boarddata []model.EntBoardRecommend
 	var recommend model.Recommend
 	var recommends []model.Recommend
+
+	boarddata = db.CallBoardList()
 
 	for i := 0; i < len(boarddata); i++ {
 
@@ -35,4 +38,8 @@ func GetBoardPost(boardId int) model.Recommend {
 
 func ModifyBoardPost(boardId int, memberNo int, title string, contents string) {
 	db.ModifyRecommendPost(boardId, memberNo, title, contents)
+}
+
+func DeleteBoardPost(boardId int, memberNo int) {
+	db.DeleteRecommendPost(boardId, memberNo)
 }
