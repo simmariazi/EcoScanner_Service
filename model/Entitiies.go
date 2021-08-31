@@ -1,10 +1,11 @@
 package model
 
 type EntSeller struct {
-	Id          int
-	Seller_name string
-	Seller_url  string
-	Create_date string
+	Id                int
+	Seller_name       string
+	Seller_url        string
+	Eco_certification int
+	About_seller      string
 }
 
 type EntMember struct {
@@ -30,24 +31,23 @@ type EntProductDetail struct {
 	Productcode       string
 	Mainimage         string
 	Description       string
-	Detail_id         int
-	Delivery_id       int
+	Detail            string
+	DeliveryTime      string
+	ShippingFee       string
 	Price             int
 	Option            string
 	Seller_id         int
-	Eco_certification string
-	Create_date       string
-	Update_date       string
+	Eco_certification int
 	Status            int
 	Product_url       string
-	DeliveryTime      string
-	ShippingFee       int
+	Update_date       string
+	Create_date       string
 }
 
 type EntDeliveryInfo struct {
 	Id           int
 	DeliveryTime string
-	ShippingFee  int
+	ShippingFee  string
 }
 
 type EntWishListProduct struct {

@@ -15,7 +15,9 @@ func GetSellerList() []model.SellerInfo {
 	for i := 0; i < len(sellers); i++ {
 		sellerinfo.SellerId = sellers[i].Id
 		sellerinfo.SellerName = sellers[i].Seller_name
-		sellerinfo.SellerIntroduction = sellers[i].Seller_url
+		sellerinfo.SellerUrl = sellers[i].Seller_url
+		sellerinfo.EcoCertification = sellers[i].Eco_certification
+		sellerinfo.SellerIntroduction = sellers[i].About_seller
 
 		sellerinfos = append(sellerinfos, sellerinfo)
 	}

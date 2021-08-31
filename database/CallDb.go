@@ -66,7 +66,7 @@ func CallSellerSelection() []model.EntSeller {
 	var result model.EntSeller
 	var results []model.EntSeller
 
-	rows, err := db.Query("SELECT * FROM seller")
+	rows, err := db.Query("SELECT id, seller_name, seller_url, eco_certification, about_seller FROM seller")
 
 	if err != nil {
 		log.Fatal(err)
@@ -75,7 +75,7 @@ func CallSellerSelection() []model.EntSeller {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&result.Id, &result.Seller_name, &result.Seller_url, &result.Create_date)
+		err := rows.Scan(&result.Id, &result.Seller_name, &result.Seller_url, &result.Eco_certification, &result.About_seller)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -203,9 +203,9 @@ func CallProductDetailSelection() []model.EntProductDetail {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&result.Id, &result.Name, &result.Productcode, &result.Mainimage, &result.Description, &result.Detail_id,
-			&result.Delivery_id, &result.Price, &result.Option, &result.Seller_id, &result.Eco_certification, &result.Create_date,
-			&result.Update_date, &result.Status, &result.Product_url)
+		err := rows.Scan(&result.Id, &result.Name, &result.Productcode, &result.Mainimage, &result.Description, &result.Detail,
+			&result.DeliveryTime, &result.ShippingFee, &result.Price, &result.Option, &result.Seller_id, &result.Eco_certification,
+			&result.Status, &result.Product_url, &result.Update_date, &result.Create_date)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -215,68 +215,6 @@ func CallProductDetailSelection() []model.EntProductDetail {
 	}
 
 	return results
-}
-
-func FindDeliveryInfoByDeliveryId(deliveryId int) model.DeliveryInfo {
-	db, err := sql.Open("mysql", connectionString)
-
-	var deliveryInfo model.DeliveryInfo
-
-	if err != nil {
-		panic(err)
-	} //에러가 있으면 프로그램을 종료해라
-
-	fmt.Println("connect success", db)
-
-	defer db.Close()
-
-	rows, err := db.Query("SELECT * FROM deliveryinfo WHERE id = " + strconv.Itoa(deliveryId))
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer rows.Close()
-
-	for rows.Next() {
-		err := rows.Scan(&deliveryInfo)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
-
-	return deliveryInfo
-}
-
-func FindDetailInfoByDetailId(detailId int) model.DetailInfo {
-	db, err := sql.Open("mysql", connectionString)
-
-	var detailInfo model.DetailInfo
-
-	if err != nil {
-		panic(err)
-	} //에러가 있으면 프로그램을 종료해라
-
-	fmt.Println("connect success", db)
-
-	defer db.Close()
-
-	rows, err := db.Query("SELECT * FROM detail WHERE id = " + strconv.Itoa(detailId))
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer rows.Close()
-
-	for rows.Next() {
-		err := rows.Scan(&detailInfo)
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
-
-	return detailInfo
 }
 
 func FindWishListById(memberno int) []model.WishListData {

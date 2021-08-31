@@ -44,10 +44,8 @@ func GetProductDetailList() []model.ProductDetail {
 	var products []model.EntProductDetail
 	var productDetail model.ProductDetail
 	var productsDetail []model.ProductDetail
-	var detailInfo model.DetailInfo
-	var deliveryInfo model.DeliveryInfo
+
 	var sellerInfo model.SellerInfo
-	//var ecoCertification model.EcoCertification
 
 	products = db.CallProductDetailSelection()
 
@@ -65,25 +63,18 @@ func GetProductDetailList() []model.ProductDetail {
 		productDetail.ProductCode = products[i].Productcode
 		productDetail.Thumbnail = products[i].Mainimage
 		productDetail.Description = products[i].Description
+		productDetail.Detail = products[i].Detail
+		productDetail.DeliveryTime = products[i].DeliveryTime
+		productDetail.ShippingFee = products[i].ShippingFee
 		productDetail.ProductPrice = products[i].Price
 		productDetail.ProductOption = products[i].Option
-
-		//DeliveryInfo
-		deliveryInfo.DeliveryId = products[i].Delivery_id
-		deliveryInfo.DeliveryTime = (db.FindDeliveryInfoByDeliveryId(products[i].Delivery_id).DeliveryTime)
-		deliveryInfo.ShippingFee = (db.FindDeliveryInfoByDeliveryId(products[i].Delivery_id).ShippingFee)
-
-		// DetailInfo
-		detailInfo.DetailId = products[i].Detail_id
-		detailInfo.Brand = (db.FindDetailInfoByDetailId(products[i].Detail_id).Brand)
-		detailInfo.Manufacturer = (db.FindDetailInfoByDetailId(products[i].Detail_id).Manufacturer)
-		detailInfo.Origin = (db.FindDetailInfoByDetailId(products[i].Detail_id).Origin)
-
-		// Ecocertification info
+		productDetail.Ecocertification = products[i].Eco_certification
+		productDetail.ProductUrl = products[i].Product_url
 
 		// SellerInfo
 		sellerInfo.SellerId = products[i].Seller_id
 		sellerInfo.SellerName = GetSellerName(products[i].Seller_id)
+
 		// 상품 조회시에는 빈 값
 		sellerInfo.SellerIntroduction = ""
 		productDetail.Seller = sellerInfo
