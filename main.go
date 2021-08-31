@@ -127,6 +127,26 @@ func main() {
 		c.JSON(200, "success")
 	})
 
+	r.POST("/review/post", func(c *gin.Context) {
+		var review model.ReviewUpdate
+		json.NewDecoder(c.Request.Body).Decode(&review)
+
+		id := review.Id
+		memberNo := review.MemberNo
+		contents := review.Contents
+		reviewRating := review.ReviewRating
+
+		function.ModifyReviewPost(id, memberNo, contents, reviewRating)
+		c.JSON(200, "success")
+	})
+
+	r.DELETE("/review", func(c *gin.Context) {
+		reviewId, _ := strconv.Atoi(c.Query("reviewId"))
+		memberNo, _ := strconv.Atoi(c.Query("memberNo"))
+		function.DeleteReviewPost(reviewId, memberNo)
+		c.JSON(200, "삭제 완료")
+	})
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))

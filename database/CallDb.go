@@ -693,3 +693,39 @@ func AddReviewPost(memberNo int, productId int, contents string, reviewRating in
 	db.Exec(query)
 
 }
+
+func ModifyReviewPost(reviewId int, memberNo int, contents string, reviewRating int) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	query := "UPDATE product_review pr SET contents = '" + contents + "', review_rating = " + strconv.Itoa(reviewRating) + ", update_date = NOW() WHERE pr.id = " + strconv.Itoa(reviewId) + " AND pr.member_no = " + strconv.Itoa(memberNo)
+
+	db.Exec(query)
+
+}
+
+func DeleteReviewPost(reviewId int, memberNo int) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	query := "DELETE FROM product_review pr WHERE id =" + strconv.Itoa(reviewId) + " AND member_no =" + strconv.Itoa(memberNo)
+
+	db.Exec(query)
+
+}

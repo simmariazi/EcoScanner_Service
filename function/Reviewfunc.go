@@ -32,3 +32,11 @@ func GetReviewList() []model.ReviewData {
 func WriteReviewPost(memberNo int, productId int, contents string, reviewRating int) {
 	db.AddReviewPost(memberNo, productId, contents, reviewRating)
 }
+
+func ModifyReviewPost(reviewId int, memberNo int, contents string, reviewRating int) {
+	db.ModifyReviewPost(reviewId, memberNo, contents, reviewRating)
+}
+
+func DeleteReviewPost(reviewId int, memberNo int) {
+	db.DeleteReviewPost(reviewId, memberNo)
+}
