@@ -114,6 +114,19 @@ func main() {
 		c.JSON(200, function.GetReviewList())
 	})
 
+	r.PUT("/review/post", func(c *gin.Context) {
+		var review model.ReviewData
+		json.NewDecoder(c.Request.Body).Decode(&review)
+
+		memberNo := review.MemberNo
+		productId := review.ProductId
+		contents := review.Contents
+		reviewRating := review.ReviewRating
+
+		function.WriteReviewPost(memberNo, productId, contents, reviewRating)
+		c.JSON(200, "success")
+	})
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))

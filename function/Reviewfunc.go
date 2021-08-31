@@ -28,3 +28,7 @@ func GetReviewList() []model.ReviewData {
 
 	return reviews
 }
+
+func WriteReviewPost(memberNo int, productId int, contents string, reviewRating int) {
+	db.AddReviewPost(memberNo, productId, contents, reviewRating)
+}

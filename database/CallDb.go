@@ -675,3 +675,21 @@ func CallReviewList() []model.EntProductReview {
 
 	return results
 }
+
+func AddReviewPost(memberNo int, productId int, contents string, reviewRating int) {
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	query := "INSERT into product_review (member_no, product_id, contents, review_rating) values (" + strconv.Itoa(memberNo) + " , " + strconv.Itoa(productId) + " , '" + contents + "'," + strconv.Itoa(reviewRating) + ")"
+
+	db.Exec(query)
+
+}
