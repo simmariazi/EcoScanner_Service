@@ -8,6 +8,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+
+	ginSwagger "github.com/swaggo/gin-swagger"
+
+	swaggerFiles "github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 func main() {
@@ -58,7 +62,7 @@ func main() {
 	r.POST("/review/post", apis.ModifyReview)
 
 	r.DELETE("/review", apis.DeleteReview)
-
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))
