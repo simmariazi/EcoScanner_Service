@@ -18,11 +18,12 @@ type EntMember struct {
 }
 
 type EntProductList struct {
-	Id         int
-	Thumnail   string
-	ProductUrl string
-	Seller_id  int
-	Is_used    int
+	Id          int
+	Thumnail    string
+	ProductUrl  string
+	Seller_id   int
+	Is_used     int
+	Category_id int
 }
 
 type EntProductDetail struct {

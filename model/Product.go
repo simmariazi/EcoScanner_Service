@@ -8,4 +8,6 @@ type Product struct {
 	ProductPrice     int
 	Seller           SellerInfo
 	IsUsed           int
+	CategoryId       int
+	CategoryName     string
 }
