@@ -110,7 +110,7 @@ func CallProductSimpleSelection() []model.EntProductList {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&result.Id, &result.Thumnail, &result.ProductUrl, &result.Seller_id, &result.Is_used)
+		err := rows.Scan(&result.Id, &result.Thumnail, &result.ProductUrl, &result.Seller_id, &result.Is_used, &result.Category_id)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -178,6 +178,35 @@ func FindProductNameById(productId int) string {
 	}
 
 	return productName
+}
+
+func FindCategoryIdByName(categoryId int) string {
+	db, err := sql.Open("mysql", connectionString)
+	var categoryName string = ""
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	rows, err := db.Query("SELECT name FROM category WHERE id = " + strconv.Itoa(categoryId))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&categoryName)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	return categoryName
 }
 
 func CallProductDetailSelection() []model.EntProductDetail {
