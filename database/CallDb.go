@@ -162,7 +162,7 @@ func FindProductNameById(productId int) string {
 
 	defer db.Close()
 
-	rows, err := db.Query("SELECT * FROM product WHERE id = " + strconv.Itoa(productId))
+	rows, err := db.Query("SELECT name FROM product WHERE id = " + strconv.Itoa(productId))
 
 	if err != nil {
 		log.Fatal(err)
@@ -209,7 +209,7 @@ func FindCategoryIdByName(categoryId int) string {
 	return categoryName
 }
 
-func CallProductDetailSelection() []model.EntProductDetail {
+func CallProductDetailSelection(productId int) model.EntProductDetail {
 	db, err := sql.Open("mysql", connectionString)
 
 	if err != nil {
@@ -221,9 +221,8 @@ func CallProductDetailSelection() []model.EntProductDetail {
 	defer db.Close()
 
 	var result model.EntProductDetail
-	var results []model.EntProductDetail
 
-	rows, err := db.Query("SELECT * FROM product")
+	rows, err := db.Query("SELECT * FROM product WHERE id =" + strconv.Itoa(productId))
 
 	if err != nil {
 		log.Fatal(err)
@@ -239,11 +238,9 @@ func CallProductDetailSelection() []model.EntProductDetail {
 			log.Fatal(err)
 		}
 
-		results = append(results, result)
-
 	}
 
-	return results
+	return result
 }
 
 func FindWishListById(memberno int) []model.WishListData {

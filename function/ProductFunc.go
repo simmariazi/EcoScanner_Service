@@ -42,49 +42,42 @@ func GetProductSimpleList() []model.Product {
 	return productsSimple
 }
 
-func GetProductDetailList() []model.ProductDetail {
-	var products []model.EntProductDetail
+func GetProductDetail(productId int) model.ProductDetail {
+	var products model.EntProductDetail
 	var productDetail model.ProductDetail
-	var productsDetail []model.ProductDetail
-
 	var sellerInfo model.SellerInfo
 
-	products = db.CallProductDetailSelection()
+	products = db.CallProductDetailSelection(productId)
 
-	for i := 0; i < len(products); i++ {
-
-		// isUsed 0일때 미진열
-		if products[i].Status == 0 {
-			continue
-		}
-
-		productDetail.IsUsed = 1
-
-		productDetail.ProductId = products[i].Id
-		productDetail.ProductName = products[i].Name
-		productDetail.ProductCode = products[i].Productcode
-		productDetail.Thumbnail = products[i].Mainimage
-		productDetail.Description = products[i].Description
-		productDetail.Detail = products[i].Detail
-		productDetail.DeliveryTime = products[i].DeliveryTime
-		productDetail.ShippingFee = products[i].ShippingFee
-		productDetail.ProductPrice = products[i].Price
-		productDetail.ProductOption = products[i].Option
-		productDetail.Ecocertification = products[i].Eco_certification
-		productDetail.ProductUrl = products[i].Product_url
-
-		// SellerInfo
-		sellerInfo.SellerId = products[i].Seller_id
-		sellerInfo.SellerName = GetSellerName(products[i].Seller_id)
-
-		// 상품 조회시에는 빈 값
-		sellerInfo.SellerIntroduction = ""
-		productDetail.Seller = sellerInfo
-
-		productsDetail = append(productsDetail, productDetail)
+	// isUsed 0일때 미진열
+	if products.Status == 0 {
+		return productDetail
 	}
 
-	return productsDetail
+	productDetail.IsUsed = 1
+
+	productDetail.ProductId = products.Id
+	productDetail.ProductName = products.Name
+	productDetail.ProductCode = products.Productcode
+	productDetail.Thumbnail = products.Mainimage
+	productDetail.Description = products.Description
+	productDetail.Detail = products.Detail
+	productDetail.DeliveryTime = products.DeliveryTime
+	productDetail.ShippingFee = products.ShippingFee
+	productDetail.ProductPrice = products.Price
+	productDetail.ProductOption = products.Option
+	productDetail.Ecocertification = products.Eco_certification
+	productDetail.ProductUrl = products.Product_url
+
+	// SellerInfo
+	sellerInfo.SellerId = products.Seller_id
+	sellerInfo.SellerName = GetSellerName(products.Seller_id)
+
+	// 상품 조회시에는 빈 값
+	sellerInfo.SellerIntroduction = ""
+	productDetail.Seller = sellerInfo
+
+	return productDetail
 }
 
 func GetProductName(productId int) string {

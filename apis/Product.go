@@ -45,3 +45,9 @@ func GetCompareProduct(c *gin.Context) {
 
 	c.JSON(200, function.GetCompareProduct(productId))
 }
+
+func GetProduct(c *gin.Context) {
+	productId, _ := strconv.Atoi(c.Param("productId"))
+
+	c.JSON(200, function.GetProductDetail(productId))
+}

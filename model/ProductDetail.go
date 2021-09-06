@@ -14,5 +14,5 @@ type ProductDetail struct {
 	ProductOption    string
 	Seller           SellerInfo
 	Thumbnail        string
-	Ecocertification int
+	Ecocertification string
 }

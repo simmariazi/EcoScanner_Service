@@ -38,7 +38,7 @@ type EntProductDetail struct {
 	Price             int
 	Option            string
 	Seller_id         int
-	Eco_certification int
+	Eco_certification string
 	Status            int
 	Product_url       string
 	Update_date       string

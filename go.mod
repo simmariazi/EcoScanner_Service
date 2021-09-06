@@ -13,14 +13,5 @@ require (
 	github.com/json-iterator/go v1.1.11 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-isatty v0.0.13 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
-	github.com/swaggo/gin-swagger v1.3.1 // indirect
-	github.com/swaggo/swag v1.7.1 // indirect
-	github.com/ugorji/go v1.2.6 // indirect
-	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
-	golang.org/x/net v0.0.0-20210903162142-ad29c8ab022f // indirect
-	golang.org/x/sys v0.0.0-20210903071746-97244b99971b // indirect
-	golang.org/x/text v0.3.7 // indirect
-	golang.org/x/tools v0.1.5 // indirect
-	google.golang.org/protobuf v1.27.1 // indirect
+	github.com/swaggo/gin-swagger v1.3.1
 )

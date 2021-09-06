@@ -33,6 +33,8 @@ func main() {
 	// Product
 	r.GET("/productsimple", apis.GetProducts)
 
+	r.GET("/product/:productId", apis.GetProduct)
+
 	r.GET("/wishlist/:memberno", apis.GetWishList)
 
 	r.PUT("/wishlist/product", apis.AddwishListProduct)
