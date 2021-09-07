@@ -14,6 +14,10 @@ import (
 	swaggerFiles "github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
+// @title EcoScanner API Docs with Swagger
+// @version 1.0
+// @host 121.166.4.186:8128
+// @BasePath
 func main() {
 	err := godotenv.Load()
 	if err != nil {
@@ -64,7 +68,7 @@ func main() {
 	r.POST("/review/post", apis.ModifyReview)
 
 	r.DELETE("/review", apis.DeleteReview)
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))
@@ -74,4 +78,5 @@ func useApp(app *gin.Engine) {
 	app.Use(middlewares.CORSMiddleware())
 	app.Use(gin.Logger())
 	app.Use(gin.CustomRecovery(middlewares.RecoveryHandler))
+	app.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 }

@@ -1,0 +1,33 @@
+host: 121.166.4.186:8128
+info:
+  contact: {}
+  title: EcoScanner API Docs with Swagger
+  version: "1.0"
+paths:
+  /apis/commerce/customer:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: customer-auth-token
+        in: header
+        name: Authorization-Customer
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Validation error
+        "401":
+          description: Authorization error
+        "404":
+          description: Not_Found error
+        "500":
+          description: Application_Server error
+      summary: 단일 구매자 조회
+      tags:
+      - customer
+swagger: "2.0"

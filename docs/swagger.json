@@ -1,0 +1,51 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "EcoScanner API Docs with Swagger",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "121.166.4.186:8128",
+    "paths": {
+        "/apis/commerce/customer": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "customer"
+                ],
+                "summary": "단일 구매자 조회",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "customer-auth-token",
+                        "name": "Authorization-Customer",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Validation error"
+                    },
+                    "401": {
+                        "description": "Authorization error"
+                    },
+                    "404": {
+                        "description": "Not_Found error"
+                    },
+                    "500": {
+                        "description": "Application_Server error"
+                    }
+                }
+            }
+        }
+    }
+}
