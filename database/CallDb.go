@@ -110,7 +110,7 @@ func CallProductSimpleSelection() []model.EntProductList {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&result.Id, &result.Thumnail, &result.ProductUrl, &result.Seller_id, &result.Is_used, &result.Category_id)
+		err := rows.Scan(&result.Id, &result.Thumbnail, &result.ProductUrl, &result.Seller_id, &result.Is_used, &result.Category_id)
 		if err != nil {
 			log.Fatal(err)
 		}

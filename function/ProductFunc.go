@@ -23,7 +23,7 @@ func GetProductSimpleList() []model.Product {
 		productSimple.IsUsed = 1
 
 		productSimple.ProductId = products[i].Id
-		productSimple.ProductThumbnail = products[i].Thumnail
+		productSimple.ProductThumbnail = products[i].Thumbnail
 		productSimple.ProductUrl = products[i].ProductUrl
 		productSimple.ProductName = db.FindProductNameById(products[i].Id)
 		productSimple.CategoryId = products[i].Category_id

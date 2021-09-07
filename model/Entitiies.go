@@ -19,7 +19,7 @@ type EntMember struct {
 
 type EntProductList struct {
 	Id          int
-	Thumnail    string
+	Thumbnail   string
 	ProductUrl  string
 	Seller_id   int
 	Is_used     int
@@ -43,12 +43,6 @@ type EntProductDetail struct {
 	Product_url       string
 	Update_date       string
 	Create_date       string
-}
-
-type EntDeliveryInfo struct {
-	Id           int
-	DeliveryTime string
-	ShippingFee  string
 }
 
 type EntWishListProduct struct {
