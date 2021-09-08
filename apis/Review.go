@@ -9,10 +9,28 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetReviews godoc
+// @tags Review
+// @summary 후기 목록 조회
+// @Accept  json
+// @Produce json
+// @Router	/review
+// @Success 200 "Success"
 func GetReviews(c *gin.Context) {
 	c.JSON(200, function.GetReviewList())
 }
 
+// WriteReview godoc
+// @tags Review
+// @summary 후기 작성
+// @Param memberNo body string true "회원 번호"
+// @Param productId body string true "SKU"
+// @Param contents body string true "후기 내용"
+// @Param reviewRating body string true "후기 평점"
+// @Accept  json
+// @Produce json
+// @Router	/review/post
+// @Success 200 "Success"
 func WriteReview(c *gin.Context) {
 	var review model.ReviewData
 	json.NewDecoder(c.Request.Body).Decode(&review)
@@ -26,6 +44,17 @@ func WriteReview(c *gin.Context) {
 	c.JSON(200, "success")
 }
 
+// ModifyReview godoc
+// @tags Review
+// @summary 후기 수정
+// @Param id body string true "후기 게시글 번호"
+// @Param memberNo body string true "회원 번호"
+// @Param contents body string true "후기 내용"
+// @Param reviewRating body string true "후기 평점"
+// @Accept  json
+// @Produce json
+// @Router	/review/post
+// @Success 200 "Success"
 func ModifyReview(c *gin.Context) {
 	var review model.ReviewUpdate
 	json.NewDecoder(c.Request.Body).Decode(&review)
@@ -39,6 +68,15 @@ func ModifyReview(c *gin.Context) {
 	c.JSON(200, "success")
 }
 
+// DeleteReview godoc
+// @tags Review
+// @summary 후기 삭제
+// @Param reviewId query string true "후기 게시글 번호"
+// @Param memberNo query string true "회원 번호"
+// @Accept  json
+// @Produce json
+// @Router	/review
+// @Success 200 "Success"
 func DeleteReview(c *gin.Context) {
 	reviewId, _ := strconv.Atoi(c.Query("reviewId"))
 	memberNo, _ := strconv.Atoi(c.Query("memberNo"))

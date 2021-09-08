@@ -6,6 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetMembers godoc
+// @tags User
+// @summary 회원 목록 조회
+// @Accept  json
+// @Produce json
+// @Router	/member
+// @Success 200 "Success"
+func GetMembers(c *gin.Context) {
+	c.JSON(200, function.GetMemberList())
+}
+
 // get godoc
 // @tags customer
 // @summary 단일 구매자 조회
@@ -18,6 +29,3 @@ import (
 // @Failure 401 "Authorization error"
 // @Failure 404 "Not_Found error"
 // @Failure 500 "Application_Server error"
-func GetMembers(c *gin.Context) {
-	c.JSON(200, function.GetMemberList())
-}
