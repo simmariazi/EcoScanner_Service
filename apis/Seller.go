@@ -11,7 +11,7 @@ import (
 // @summary 기업 목록 조회
 // @Accept  json
 // @Produce json
-// @Router	/seller
+// @Router	/seller [get]
 // @Success 200 "Success"
 func GetSellers(c *gin.Context) {
 	c.JSON(200, function.GetSellerList())

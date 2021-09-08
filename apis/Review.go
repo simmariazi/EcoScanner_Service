@@ -14,7 +14,7 @@ import (
 // @summary 후기 목록 조회
 // @Accept  json
 // @Produce json
-// @Router	/review
+// @Router	/review [get]
 // @Success 200 "Success"
 func GetReviews(c *gin.Context) {
 	c.JSON(200, function.GetReviewList())
@@ -29,7 +29,7 @@ func GetReviews(c *gin.Context) {
 // @Param reviewRating body string true "후기 평점"
 // @Accept  json
 // @Produce json
-// @Router	/review/post
+// @Router	/review/post [put]
 // @Success 200 "Success"
 func WriteReview(c *gin.Context) {
 	var review model.ReviewData
@@ -53,7 +53,7 @@ func WriteReview(c *gin.Context) {
 // @Param reviewRating body string true "후기 평점"
 // @Accept  json
 // @Produce json
-// @Router	/review/post
+// @Router	/review/post [post]
 // @Success 200 "Success"
 func ModifyReview(c *gin.Context) {
 	var review model.ReviewUpdate
@@ -75,7 +75,7 @@ func ModifyReview(c *gin.Context) {
 // @Param memberNo query string true "회원 번호"
 // @Accept  json
 // @Produce json
-// @Router	/review
+// @Router	/review [delete]
 // @Success 200 "Success"
 func DeleteReview(c *gin.Context) {
 	reviewId, _ := strconv.Atoi(c.Query("reviewId"))

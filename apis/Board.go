@@ -14,7 +14,7 @@ import (
 // @summary 게시판 목록 조회
 // @Accept  json
 // @Produce json
-// @Router	/board
+// @Router	/board [get]
 // @Success 200 "Success"
 func GetBoards(c *gin.Context) {
 	c.JSON(200, function.GetBoardList())
@@ -28,7 +28,7 @@ func GetBoards(c *gin.Context) {
 // @Param contents body string true "게시글 내용"
 // @Accept  json
 // @Produce json
-// @Router	/board/post
+// @Router	/board/post [put]
 // @Success 200 "Success"
 func WriteBoard(c *gin.Context) {
 	var board model.Board
@@ -48,7 +48,7 @@ func WriteBoard(c *gin.Context) {
 // @Param boardId query string true "게시글 번호"
 // @Accept  json
 // @Produce json
-// @Router	/board/post
+// @Router	/board/post [get]
 // @Success 200 "Success"
 func GetBoard(c *gin.Context) {
 	boardId, _ := strconv.Atoi(c.Query("boardId"))
@@ -64,7 +64,7 @@ func GetBoard(c *gin.Context) {
 // @Param contents body string true "게시글 내용"
 // @Accept  json
 // @Produce json
-// @Router	/board/post
+// @Router	/board/post [post]
 // @Success 200 "Success"
 func ModifyBoard(c *gin.Context) {
 	var board model.BoardUpdate
@@ -86,7 +86,7 @@ func ModifyBoard(c *gin.Context) {
 // @Param memberNo query string true "회원 번호"
 // @Accept  json
 // @Produce json
-// @Router	/board
+// @Router	/board [delete]
 // @Success 200 "Success"
 func DeleteBoard(c *gin.Context) {
 	boardId, _ := strconv.Atoi(c.Query("boardId"))

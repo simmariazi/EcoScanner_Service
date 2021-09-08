@@ -12,7 +12,7 @@ import (
 // @summary 상품 목록 조회
 // @Accept  json
 // @Produce json
-// @Router	/productsimple
+// @Router	/productsimple [get]
 // @Success 200 "Success"
 func GetProducts(c *gin.Context) {
 	c.JSON(200, function.GetProductSimpleList())
@@ -21,10 +21,10 @@ func GetProducts(c *gin.Context) {
 // GetWishList godoc
 // @tags Product
 // @summary 찜 목록 조회
-// @Param memberNo Param string true "회원 번호"
+// @Param memberNo path string true "회원 번호"
 // @Accept  json
 // @Produce json
-// @Router	/wishlist/:memberno
+// @Router	/wishlist/{memberNo} [get]
 // @Success 200 "Success"
 func GetWishList(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("memberno"))
@@ -39,7 +39,7 @@ func GetWishList(c *gin.Context) {
 // @Param productId query string true "SKU"
 // @Accept  json
 // @Produce json
-// @Router	/wishlist/product
+// @Router	/wishlist/product [put]
 // @Success 200 "Success"
 func AddwishListProduct(c *gin.Context) {
 	memberNo, _ := strconv.Atoi(c.Query("memberNo"))
@@ -55,7 +55,7 @@ func AddwishListProduct(c *gin.Context) {
 // @Param sellerId query string true "기업 번호"
 // @Accept  json
 // @Produce json
-// @Router	/wishlist/seller
+// @Router	/wishlist/seller [put]
 // @Success 200 "Success"
 func AddwishListSeller(c *gin.Context) {
 	memberNo, _ := strconv.Atoi(c.Query("memberNo"))
@@ -67,13 +67,13 @@ func AddwishListSeller(c *gin.Context) {
 // DeleteWishList godoc
 // @tags Product
 // @summary 찜 목록 삭제
-// @Param memberNo param string true "회원 번호"
-// @Param itemtype param string true "상품 or 기업 선택"
+// @Param memberNo path string true "회원 번호"
+// @Param itemtype path string true "상품 or 기업 선택"
 // @Param allOrNot query string true "전체 삭제 or 특정 항목 삭제"
-// @Param id param query true "SKU or 기업 번호"
+// @Param id query int true "SKU or 기업 번호"
 // @Accept  json
 // @Produce json
-// @Router	/wishlist/:type/:memberno
+// @Router	/wishlist/{type}/{memberno} [delete]
 // @Success 200 "Success"
 func DeleteWishList(c *gin.Context) {
 	memberNo, _ := strconv.Atoi(c.Param("memberno"))
@@ -90,7 +90,7 @@ func DeleteWishList(c *gin.Context) {
 // @Param productId query string true "SKU"
 // @Accept  json
 // @Produce json
-// @Router	/product/compare
+// @Router	/product/compare [get]
 // @Success 200 "Success"
 func GetCompareProduct(c *gin.Context) {
 	productId := c.Query("productId")
@@ -101,10 +101,10 @@ func GetCompareProduct(c *gin.Context) {
 // GetProduct godoc
 // @tags Product
 // @summary 상품 상세 조회
-// @Param productId param string true "SKU"
+// @Param productId path string true "SKU"
 // @Accept  json
 // @Produce json
-// @Router	/product/:productId
+// @Router	/product/{productId} [get]
 // @Success 200 "Success"
 func GetProduct(c *gin.Context) {
 	productId, _ := strconv.Atoi(c.Param("productId"))

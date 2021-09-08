@@ -17,7 +17,7 @@ import (
 // @title EcoScanner API Docs with Swagger
 // @version 1.0
 // @host 121.166.4.186:8128
-// @BasePath
+// @BasePath /
 func main() {
 	err := godotenv.Load()
 	if err != nil {
@@ -29,10 +29,10 @@ func main() {
 	r := gin.Default()
 
 	// User
-	r.GET("/member", apis.GetMembers)
+	r.GET("user/member", apis.GetMembers)
 
 	// Seller
-	r.GET("/seller", apis.GetSellers)
+	r.GET("/seller/get", apis.GetSellers)
 
 	// Product
 	r.GET("/productsimple", apis.GetProducts)

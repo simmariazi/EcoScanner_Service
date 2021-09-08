@@ -4,14 +4,19 @@ info:
   title: EcoScanner API Docs with Swagger
   version: "1.0"
 paths:
-  /apis/commerce/customer:
-    get:
+  /board:
+    delete:
       consumes:
       - application/json
       parameters:
-      - description: customer-auth-token
-        in: header
-        name: Authorization-Customer
+      - description: 게시글 번호
+        in: query
+        name: boardId
+        required: true
+        type: string
+      - description: 회원 번호
+        in: query
+        name: memberNo
         required: true
         type: string
       produces:
@@ -19,15 +24,378 @@ paths:
       responses:
         "200":
           description: Success
-        "400":
-          description: Validation error
-        "401":
-          description: Authorization error
-        "404":
-          description: Not_Found error
-        "500":
-          description: Application_Server error
-      summary: 단일 구매자 조회
+      summary: 게시글 삭제
       tags:
-      - customer
+      - Board
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 게시판 목록 조회
+      tags:
+      - Board
+  /board/post:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 게시글 번호
+        in: query
+        name: boardId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 게시글 조회
+      tags:
+      - Board
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 게시글 번호
+        in: body
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: 회원 번호
+        in: body
+        name: memberNo
+        required: true
+        schema:
+          type: string
+      - description: 게시글 제목
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      - description: 게시글 내용
+        in: body
+        name: contents
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 게시글 수정
+      tags:
+      - Board
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 회원 번호
+        in: body
+        name: memberNo
+        required: true
+        schema:
+          type: string
+      - description: 게시글 제목
+        in: body
+        name: title
+        required: true
+        schema:
+          type: string
+      - description: 게시글 내용
+        in: body
+        name: contents
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 게시글 작성
+      tags:
+      - Board
+  /member:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 회원 목록 조회
+      tags:
+      - User
+  /product/:productId:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: SKU
+        in: path
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 상품 상세 조회
+      tags:
+      - Product
+  /product/compare:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: SKU
+        in: query
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 상품 비교
+      tags:
+      - Product
+  /productsimple:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 상품 목록 조회
+      tags:
+      - Product
+  /review:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 후기 게시글 번호
+        in: query
+        name: reviewId
+        required: true
+        type: string
+      - description: 회원 번호
+        in: query
+        name: memberNo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 후기 삭제
+      tags:
+      - Review
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 후기 목록 조회
+      tags:
+      - Review
+  /review/post:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 후기 게시글 번호
+        in: body
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: 회원 번호
+        in: body
+        name: memberNo
+        required: true
+        schema:
+          type: string
+      - description: 후기 내용
+        in: body
+        name: contents
+        required: true
+        schema:
+          type: string
+      - description: 후기 평점
+        in: body
+        name: reviewRating
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 후기 수정
+      tags:
+      - Review
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 회원 번호
+        in: body
+        name: memberNo
+        required: true
+        schema:
+          type: string
+      - description: SKU
+        in: body
+        name: productId
+        required: true
+        schema:
+          type: string
+      - description: 후기 내용
+        in: body
+        name: contents
+        required: true
+        schema:
+          type: string
+      - description: 후기 평점
+        in: body
+        name: reviewRating
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 후기 작성
+      tags:
+      - Review
+  /seller:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 기업 목록 조회
+      tags:
+      - Seller
+  /wishlist:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 회원 번호
+        in: path
+        name: memberNo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 찜 목록 조회
+      tags:
+      - Product
+  /wishlist/:type/:memberno:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: 회원 번호
+        in: path
+        name: memberNo
+        required: true
+        type: string
+      - description: 상품 or 기업 선택
+        in: path
+        name: itemtype
+        required: true
+        type: string
+      - description: 전체 삭제 or 특정 항목 삭제
+        in: query
+        name: allOrNot
+        required: true
+        type: string
+      - description: SKU or 기업 번호
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 찜 목록 삭제
+      tags:
+      - Product
+  /wishlist/product:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 회원 번호
+        in: query
+        name: memberNo
+        required: true
+        type: string
+      - description: SKU
+        in: query
+        name: productId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 찜 상품 추가
+      tags:
+      - Product
+  /wishlist/seller:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: 회원 번호
+        in: query
+        name: memberNo
+        required: true
+        type: string
+      - description: 기업 번호
+        in: query
+        name: sellerId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 찜 기업 추가
+      tags:
+      - Product
 swagger: "2.0"
