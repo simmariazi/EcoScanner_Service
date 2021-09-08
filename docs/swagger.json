@@ -6,6 +6,7 @@
         "version": "1.0"
     },
     "host": "121.166.4.186:8128",
+    "basePath": "/",
     "paths": {
         "/board": {
             "get": {
@@ -207,34 +208,6 @@
                 }
             }
         },
-        "/product/:productId": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Product"
-                ],
-                "summary": "상품 상세 조회",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "SKU",
-                        "name": "productId",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                }
-            }
-        },
         "/product/compare": {
             "get": {
                 "consumes": [
@@ -253,6 +226,34 @@
                         "description": "SKU",
                         "name": "productId",
                         "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/product/{productId}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "상품 상세 조회",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "SKU",
+                        "name": "productId",
+                        "in": "path",
                         "required": true
                     }
                 ],
@@ -465,83 +466,6 @@
                 }
             }
         },
-        "/wishlist": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Product"
-                ],
-                "summary": "찜 목록 조회",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "회원 번호",
-                        "name": "memberNo",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                }
-            }
-        },
-        "/wishlist/:type/:memberno": {
-            "delete": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Product"
-                ],
-                "summary": "찜 목록 삭제",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "회원 번호",
-                        "name": "memberNo",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "상품 or 기업 선택",
-                        "name": "itemtype",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "전체 삭제 or 특정 항목 삭제",
-                        "name": "allOrNot",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "SKU or 기업 번호",
-                        "name": "id",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success"
-                    }
-                }
-            }
-        },
         "/wishlist/product": {
             "put": {
                 "consumes": [
@@ -601,6 +525,83 @@
                         "type": "string",
                         "description": "기업 번호",
                         "name": "sellerId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/wishlist/{memberNo}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "찜 목록 조회",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "회원 번호",
+                        "name": "memberNo",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/wishlist/{type}/{memberno}": {
+            "delete": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "찜 목록 삭제",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "회원 번호",
+                        "name": "memberNo",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "상품 or 기업 선택",
+                        "name": "itemtype",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "전체 삭제 or 특정 항목 삭제",
+                        "name": "allOrNot",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "SKU or 기업 번호",
+                        "name": "id",
                         "in": "query",
                         "required": true
                     }

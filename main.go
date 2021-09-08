@@ -6,9 +6,10 @@ import (
 	"main/middlewares"
 	"os"
 
+	_ "main/docs"
+
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	swaggerFiles "github.com/swaggo/gin-swagger/swaggerFiles"

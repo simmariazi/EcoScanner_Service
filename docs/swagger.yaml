@@ -1,3 +1,4 @@
+basePath: /
 host: 121.166.4.186:8128
 info:
   contact: {}
@@ -134,7 +135,7 @@ paths:
       summary: 회원 목록 조회
       tags:
       - User
-  /product/:productId:
+  /product/{productId}:
     get:
       consumes:
       - application/json
@@ -301,7 +302,7 @@ paths:
       summary: 기업 목록 조회
       tags:
       - Seller
-  /wishlist:
+  /wishlist/{memberNo}:
     get:
       consumes:
       - application/json
@@ -319,7 +320,7 @@ paths:
       summary: 찜 목록 조회
       tags:
       - Product
-  /wishlist/:type/:memberno:
+  /wishlist/{type}/{memberno}:
     delete:
       consumes:
       - application/json
