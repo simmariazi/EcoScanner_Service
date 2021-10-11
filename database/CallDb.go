@@ -87,7 +87,10 @@ func CallSellerSelection() []model.EntSeller {
 	return results
 }
 
-func CallProductSimpleSelection() []model.EntProductList {
+func CallProductSimpleSelection(page int) []model.EntProductList {
+
+	firstnumber := (page-1)*12 + 1
+
 	db, err := sql.Open("mysql", connectionString)
 
 	if err != nil {
@@ -101,7 +104,17 @@ func CallProductSimpleSelection() []model.EntProductList {
 	var result model.EntProductList
 	var results []model.EntProductList
 
-	rows, err := db.Query("SELECT * FROM product_list")
+	var rows *sql.Rows
+
+	if page == 0 {
+
+		rows, err = db.Query("SELECT pl.id id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id")
+
+	} else {
+
+		rows, err = db.Query("SELECT pl.id id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id LIMIT " + strconv.Itoa(firstnumber-1) + ", 12")
+
+	}
 
 	if err != nil {
 		log.Fatal(err)
@@ -110,7 +123,7 @@ func CallProductSimpleSelection() []model.EntProductList {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&result.Id, &result.Thumbnail, &result.ProductUrl, &result.Seller_id, &result.Is_used, &result.Category_id)
+		err := rows.Scan(&result.Id, &result.ProductName, &result.Thumbnail, &result.ProductUrl, &result.Seller_id, &result.Seller_name, &result.Category_id, &result.Category_name, &result.Is_used)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -222,7 +235,8 @@ func CallProductDetailSelection(productId int) model.EntProductDetail {
 
 	var result model.EntProductDetail
 
-	rows, err := db.Query("SELECT * FROM product WHERE id =" + strconv.Itoa(productId))
+	query := "SELECT * FROM product WHERE id =" + strconv.Itoa(productId)
+	rows, err := db.Query(query)
 
 	if err != nil {
 		log.Fatal(err)

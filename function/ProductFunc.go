@@ -5,13 +5,13 @@ import (
 	"main/model"
 )
 
-func GetProductSimpleList() []model.Product {
+func GetProductSimpleList(page int) []model.Product {
 	var products []model.EntProductList
 	var productSimple model.Product
 	var productsSimple []model.Product
 	var sellerInfo model.SellerInfo
 
-	products = db.CallProductSimpleSelection()
+	products = db.CallProductSimpleSelection(page)
 
 	for i := 0; i < len(products); i++ {
 
@@ -25,13 +25,13 @@ func GetProductSimpleList() []model.Product {
 		productSimple.ProductId = products[i].Id
 		productSimple.ProductThumbnail = products[i].Thumbnail
 		productSimple.ProductUrl = products[i].ProductUrl
-		productSimple.ProductName = db.FindProductNameById(products[i].Id)
+		productSimple.ProductName = products[i].ProductName
 		productSimple.CategoryId = products[i].Category_id
-		productSimple.CategoryName = db.FindCategoryIdByName(products[i].Category_id)
+		productSimple.CategoryName = products[i].Category_name
 
 		// SellerInfo
 		sellerInfo.SellerId = products[i].Seller_id
-		sellerInfo.SellerName = GetSellerName(products[i].Seller_id)
+		sellerInfo.SellerName = products[i].Seller_name
 		// 상품 조회시에는 빈 값
 		sellerInfo.SellerIntroduction = ""
 		productSimple.Seller = sellerInfo

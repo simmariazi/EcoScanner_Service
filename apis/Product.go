@@ -15,7 +15,9 @@ import (
 // @Router	/productsimple [get]
 // @Success 200 "Success"
 func GetProducts(c *gin.Context) {
-	c.JSON(200, function.GetProductSimpleList())
+	page, _ := strconv.Atoi(c.Query("page"))
+	c.JSON(200, function.GetProductSimpleList(page))
+
 }
 
 // GetWishList godoc
