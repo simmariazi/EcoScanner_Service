@@ -50,6 +50,8 @@ func main() {
 
 	r.GET("/product/compare", apis.GetCompareProduct)
 
+	r.GET("/product/search/:productName", apis.Searchproducts)
+
 	// Board
 	r.GET("/board", apis.GetBoards)
 

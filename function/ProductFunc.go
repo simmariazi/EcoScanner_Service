@@ -87,3 +87,7 @@ func GetProductName(productId int) string {
 func GetCompareProduct(productId string) []model.ProductDetail {
 	return db.CompareProductDetail(productId)
 }
+
+func SearchProductsByProductName(productName string) []model.Product {
+	return db.SearchProductsByProductName(productName)
+}

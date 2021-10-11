@@ -113,3 +113,17 @@ func GetProduct(c *gin.Context) {
 
 	c.JSON(200, function.GetProductDetail(productId))
 }
+
+// SearchProductsByProductName godoc
+// @tags Product
+// @summary 상품 검색
+// @Param productId path string true "SKU"
+// @Accept  json
+// @Produce json
+// @Router	/product/{productId} [get]
+// @Success 200 "Success"
+func Searchproducts(c *gin.Context) {
+	productName := c.Param("productName")
+
+	c.JSON(200, function.SearchProductsByProductName(productName))
+}

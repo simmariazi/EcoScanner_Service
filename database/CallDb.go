@@ -707,3 +707,41 @@ func DeleteReviewPost(reviewId int, memberNo int) {
 	db.Exec(query)
 
 }
+
+func SearchProductsByProductName(productName string) []model.Product {
+
+	var result model.Product
+	var results []model.Product
+
+	db, err := sql.Open("mysql", connectionString)
+
+	if err != nil {
+		panic(err)
+	} //에러가 있으면 프로그램을 종료해라
+
+	fmt.Println("connect success", db)
+
+	defer db.Close()
+
+	query := "SELECT pl.id id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl, product p, category c, seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id AND p.name like '%" + productName + "%'"
+
+	rows, err := db.Query(query)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		err := rows.Scan(&result.ProductId, &result.ProductName, &result.ProductThumbnail, &result.ProductUrl, &result.Seller.SellerId, &result.Seller.SellerName, &result.CategoryId, &result.CategoryName, &result.IsUsed)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		results = append(results, result)
+	}
+
+	return results
+
+}
