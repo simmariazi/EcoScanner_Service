@@ -108,11 +108,11 @@ func CallProductSimpleSelection(page int) []model.EntProductList {
 
 	if page == 0 {
 
-		rows, err = db.Query("SELECT pl.id id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id")
+		rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id")
 
 	} else {
 
-		rows, err = db.Query("SELECT pl.id id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id LIMIT " + strconv.Itoa(firstnumber-1) + ", 12")
+		rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id LIMIT " + strconv.Itoa(firstnumber-1) + ", 12")
 
 	}
 
@@ -723,7 +723,7 @@ func SearchProductsByProductName(productName string) []model.Product {
 
 	defer db.Close()
 
-	query := "SELECT pl.id id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl, product p, category c, seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id AND p.name like '%" + productName + "%'"
+	query := "SELECT pl.id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl, product p, category c, seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id AND p.name like '%" + productName + "%'"
 
 	rows, err := db.Query(query)
 
