@@ -87,7 +87,7 @@ func CallSellerSelection() []model.EntSeller {
 	return results
 }
 
-func CallProductSimpleSelection(page int) []model.EntProductList {
+func CallProductSimpleSelection(page int, count int) []model.EntProductList {
 
 	firstnumber := (page-1)*12 + 1
 
@@ -108,7 +108,11 @@ func CallProductSimpleSelection(page int) []model.EntProductList {
 
 	if page == 0 {
 
-		rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, p.price, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id")
+		if count == 0 {
+			rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, p.price, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id")
+		} else {
+			rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, p.price, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id LIMIT " + strconv.Itoa(count))
+		}
 
 	} else {
 

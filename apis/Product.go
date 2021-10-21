@@ -16,7 +16,8 @@ import (
 // @Success 200 "Success"
 func GetProducts(c *gin.Context) {
 	page, _ := strconv.Atoi(c.Query("page"))
-	c.JSON(200, function.GetProductSimpleList(page))
+	count, _ := strconv.Atoi(c.Query("count"))
+	c.JSON(200, function.GetProductSimpleList(page, count))
 
 }
 

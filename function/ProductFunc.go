@@ -5,13 +5,13 @@ import (
 	"main/model"
 )
 
-func GetProductSimpleList(page int) []model.Product {
+func GetProductSimpleList(page int, count int) []model.Product {
 	var products []model.EntProductList
 	var productSimple model.Product
 	var productsSimple []model.Product
 	var sellerInfo model.SellerInfo
 
-	products = db.CallProductSimpleSelection(page)
+	products = db.CallProductSimpleSelection(page, count)
 
 	for i := 0; i < len(products); i++ {
 
