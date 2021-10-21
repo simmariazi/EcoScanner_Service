@@ -28,7 +28,7 @@ func main() {
 	database.InitConnectionString(os.Getenv("CONNECTION_STRING"))
 
 	r := gin.Default()
-
+	useApp(r)
 	// User
 	r.GET("user/member", apis.GetMembers)
 
@@ -71,8 +71,6 @@ func main() {
 	r.POST("/review/post", apis.ModifyReview)
 
 	r.DELETE("/review", apis.DeleteReview)
-
-	useApp(r)
 
 	r.Run(":" + os.Getenv("PORT"))
 }
