@@ -14,12 +14,12 @@ paths:
         in: query
         name: boardId
         required: true
-        type: string
+        type: integer
       - description: 회원 번호
         in: query
         name: memberNo
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:
@@ -48,7 +48,7 @@ paths:
         in: query
         name: boardId
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:
@@ -66,13 +66,13 @@ paths:
         name: id
         required: true
         schema:
-          type: string
+          type: integer
       - description: 회원 번호
         in: body
         name: memberNo
         required: true
         schema:
-          type: string
+          type: integer
       - description: 게시글 제목
         in: body
         name: title
@@ -102,7 +102,7 @@ paths:
         name: memberNo
         required: true
         schema:
-          type: string
+          type: integer
       - description: 게시글 제목
         in: body
         name: title
@@ -144,7 +144,7 @@ paths:
         in: path
         name: productId
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:
@@ -193,6 +193,15 @@ paths:
     get:
       consumes:
       - application/json
+      parameters:
+      - description: 페이지 번호
+        in: query
+        name: page
+        type: integer
+      - description: 상품 개수
+        in: query
+        name: count
+        type: integer
       produces:
       - application/json
       responses:
@@ -210,12 +219,12 @@ paths:
         in: query
         name: reviewId
         required: true
-        type: string
+        type: integer
       - description: 회원 번호
         in: query
         name: memberNo
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:
@@ -245,13 +254,13 @@ paths:
         name: id
         required: true
         schema:
-          type: string
+          type: integer
       - description: 회원 번호
         in: body
         name: memberNo
         required: true
         schema:
-          type: string
+          type: integer
       - description: 후기 내용
         in: body
         name: contents
@@ -263,7 +272,7 @@ paths:
         name: reviewRating
         required: true
         schema:
-          type: string
+          type: integer
       produces:
       - application/json
       responses:
@@ -281,13 +290,13 @@ paths:
         name: memberNo
         required: true
         schema:
-          type: string
+          type: integer
       - description: SKU
         in: body
         name: productId
         required: true
         schema:
-          type: string
+          type: integer
       - description: 후기 내용
         in: body
         name: contents
@@ -299,7 +308,7 @@ paths:
         name: reviewRating
         required: true
         schema:
-          type: string
+          type: integer
       produces:
       - application/json
       responses:
@@ -329,7 +338,7 @@ paths:
         in: path
         name: memberNo
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:
@@ -347,7 +356,7 @@ paths:
         in: path
         name: memberNo
         required: true
-        type: string
+        type: integer
       - description: 상품 or 기업 선택
         in: path
         name: itemtype
@@ -380,12 +389,12 @@ paths:
         in: query
         name: memberNo
         required: true
-        type: string
+        type: integer
       - description: SKU
         in: query
         name: productId
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:
@@ -403,12 +412,12 @@ paths:
         in: query
         name: memberNo
         required: true
-        type: string
+        type: integer
       - description: 기업 번호
         in: query
         name: sellerId
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:

@@ -23,10 +23,10 @@ func GetReviews(c *gin.Context) {
 // WriteReview godoc
 // @tags Review
 // @summary 후기 작성
-// @Param memberNo body string true "회원 번호"
-// @Param productId body string true "SKU"
+// @Param memberNo body int true "회원 번호"
+// @Param productId body int true "SKU"
 // @Param contents body string true "후기 내용"
-// @Param reviewRating body string true "후기 평점"
+// @Param reviewRating body int true "후기 평점"
 // @Accept  json
 // @Produce json
 // @Router	/review/post [put]
@@ -47,10 +47,10 @@ func WriteReview(c *gin.Context) {
 // ModifyReview godoc
 // @tags Review
 // @summary 후기 수정
-// @Param id body string true "후기 게시글 번호"
-// @Param memberNo body string true "회원 번호"
+// @Param id body int true "후기 게시글 번호"
+// @Param memberNo body int true "회원 번호"
 // @Param contents body string true "후기 내용"
-// @Param reviewRating body string true "후기 평점"
+// @Param reviewRating body int true "후기 평점"
 // @Accept  json
 // @Produce json
 // @Router	/review/post [post]
@@ -71,8 +71,8 @@ func ModifyReview(c *gin.Context) {
 // DeleteReview godoc
 // @tags Review
 // @summary 후기 삭제
-// @Param reviewId query string true "후기 게시글 번호"
-// @Param memberNo query string true "회원 번호"
+// @Param reviewId query int true "후기 게시글 번호"
+// @Param memberNo query int true "회원 번호"
 // @Accept  json
 // @Produce json
 // @Router	/review [delete]

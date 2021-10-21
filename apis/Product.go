@@ -10,6 +10,8 @@ import (
 // GetProducts godoc
 // @tags Product
 // @summary 상품 목록 조회
+// @Param page query int false "페이지 번호"
+// @Param count query int false "상품 개수"
 // @Accept  json
 // @Produce json
 // @Router	/productsimple [get]
@@ -24,7 +26,7 @@ func GetProducts(c *gin.Context) {
 // GetWishList godoc
 // @tags Product
 // @summary 찜 목록 조회
-// @Param memberNo path string true "회원 번호"
+// @Param memberNo path int true "회원 번호"
 // @Accept  json
 // @Produce json
 // @Router	/wishlist/{memberNo} [get]
@@ -38,8 +40,8 @@ func GetWishList(c *gin.Context) {
 // AddWishListProduct godoc
 // @tags Product
 // @summary 찜 상품 추가
-// @Param memberNo query string true "회원 번호"
-// @Param productId query string true "SKU"
+// @Param memberNo query int true "회원 번호"
+// @Param productId query int true "SKU"
 // @Accept  json
 // @Produce json
 // @Router	/wishlist/product [put]
@@ -54,8 +56,8 @@ func AddwishListProduct(c *gin.Context) {
 // AddWishListSeller godoc
 // @tags Product
 // @summary 찜 기업 추가
-// @Param memberNo query string true "회원 번호"
-// @Param sellerId query string true "기업 번호"
+// @Param memberNo query int true "회원 번호"
+// @Param sellerId query int true "기업 번호"
 // @Accept  json
 // @Produce json
 // @Router	/wishlist/seller [put]
@@ -70,7 +72,7 @@ func AddwishListSeller(c *gin.Context) {
 // DeleteWishList godoc
 // @tags Product
 // @summary 찜 목록 삭제
-// @Param memberNo path string true "회원 번호"
+// @Param memberNo path int true "회원 번호"
 // @Param itemtype path string true "상품 or 기업 선택"
 // @Param allOrNot query string true "전체 삭제 or 특정 항목 삭제"
 // @Param id query int true "SKU or 기업 번호"
@@ -104,7 +106,7 @@ func GetCompareProduct(c *gin.Context) {
 // GetProduct godoc
 // @tags Product
 // @summary 상품 상세 조회
-// @Param productId path string true "SKU"
+// @Param productId path int true "SKU"
 // @Accept  json
 // @Produce json
 // @Router	/product/{productId} [get]

@@ -54,14 +54,14 @@ var doc = `{
                 "summary": "게시글 삭제",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "게시글 번호",
                         "name": "boardId",
                         "in": "query",
                         "required": true
                     },
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "회원 번호",
                         "name": "memberNo",
                         "in": "query",
@@ -89,7 +89,7 @@ var doc = `{
                 "summary": "게시글 조회",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "게시글 번호",
                         "name": "boardId",
                         "in": "query",
@@ -120,7 +120,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     },
                     {
@@ -166,7 +166,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     },
                     {
@@ -175,7 +175,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     },
                     {
@@ -293,7 +293,7 @@ var doc = `{
                 "summary": "상품 상세 조회",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "SKU",
                         "name": "productId",
                         "in": "path",
@@ -319,6 +319,20 @@ var doc = `{
                     "Product"
                 ],
                 "summary": "상품 목록 조회",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "페이지 번호",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "상품 개수",
+                        "name": "count",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success"
@@ -357,14 +371,14 @@ var doc = `{
                 "summary": "후기 삭제",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "후기 게시글 번호",
                         "name": "reviewId",
                         "in": "query",
                         "required": true
                     },
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "회원 번호",
                         "name": "memberNo",
                         "in": "query",
@@ -397,7 +411,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     },
                     {
@@ -406,7 +420,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     },
                     {
@@ -424,7 +438,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     }
                 ],
@@ -452,7 +466,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     },
                     {
@@ -461,7 +475,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     },
                     {
@@ -479,7 +493,7 @@ var doc = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         }
                     }
                 ],
@@ -523,14 +537,14 @@ var doc = `{
                 "summary": "찜 상품 추가",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "회원 번호",
                         "name": "memberNo",
                         "in": "query",
                         "required": true
                     },
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "SKU",
                         "name": "productId",
                         "in": "query",
@@ -558,14 +572,14 @@ var doc = `{
                 "summary": "찜 기업 추가",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "회원 번호",
                         "name": "memberNo",
                         "in": "query",
                         "required": true
                     },
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "기업 번호",
                         "name": "sellerId",
                         "in": "query",
@@ -593,7 +607,7 @@ var doc = `{
                 "summary": "찜 목록 조회",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "회원 번호",
                         "name": "memberNo",
                         "in": "path",
@@ -621,7 +635,7 @@ var doc = `{
                 "summary": "찜 목록 삭제",
                 "parameters": [
                     {
-                        "type": "string",
+                        "type": "integer",
                         "description": "회원 번호",
                         "name": "memberNo",
                         "in": "path",

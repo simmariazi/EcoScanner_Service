@@ -23,7 +23,7 @@ func GetBoards(c *gin.Context) {
 // WriteBoard godoc
 // @tags Board
 // @summary 게시글 작성
-// @Param memberNo body string true "회원 번호"
+// @Param memberNo body int true "회원 번호"
 // @Param title body string true "게시글 제목"
 // @Param contents body string true "게시글 내용"
 // @Accept  json
@@ -45,7 +45,7 @@ func WriteBoard(c *gin.Context) {
 // GetBoard godoc
 // @tags Board
 // @summary 게시글 조회
-// @Param boardId query string true "게시글 번호"
+// @Param boardId query int true "게시글 번호"
 // @Accept  json
 // @Produce json
 // @Router	/board/post [get]
@@ -58,8 +58,8 @@ func GetBoard(c *gin.Context) {
 // ModifyBoard godoc
 // @tags Board
 // @summary 게시글 수정
-// @Param id body string true "게시글 번호"
-// @Param memberNo body string true "회원 번호"
+// @Param id body int true "게시글 번호"
+// @Param memberNo body int true "회원 번호"
 // @Param title body string true "게시글 제목"
 // @Param contents body string true "게시글 내용"
 // @Accept  json
@@ -82,8 +82,8 @@ func ModifyBoard(c *gin.Context) {
 // DeleteBoard godoc
 // @tags Board
 // @summary 게시글 삭제
-// @Param boardId query string true "게시글 번호"
-// @Param memberNo query string true "회원 번호"
+// @Param boardId query int true "게시글 번호"
+// @Param memberNo query int true "회원 번호"
 // @Accept  json
 // @Produce json
 // @Router	/board [delete]
