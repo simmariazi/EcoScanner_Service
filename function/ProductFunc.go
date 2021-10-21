@@ -25,6 +25,7 @@ func GetProductSimpleList(page int) []model.Product {
 		productSimple.ProductId = products[i].Id
 		productSimple.ProductThumbnail = products[i].Thumbnail
 		productSimple.ProductUrl = products[i].ProductUrl
+		productSimple.ProductPrice = products[i].ProductPrice
 		productSimple.ProductName = products[i].ProductName
 		productSimple.CategoryId = products[i].Category_id
 		productSimple.CategoryName = products[i].Category_name

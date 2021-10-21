@@ -171,6 +171,24 @@ paths:
       summary: 상품 비교
       tags:
       - Product
+  /product/search/{productName}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 검색할 상품 이름
+        in: path
+        name: productName
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success
+      summary: 상품 검색
+      tags:
+      - Product
   /productsimple:
     get:
       consumes:

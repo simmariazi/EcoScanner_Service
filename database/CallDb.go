@@ -65,8 +65,8 @@ func CallSellerSelection() []model.EntSeller {
 
 	var result model.EntSeller
 	var results []model.EntSeller
-
-	rows, err := db.Query("SELECT id, seller_name, seller_url, eco_certification, about_seller FROM seller")
+	query := "SELECT id, seller_name, seller_url, eco_certification, about_seller FROM seller"
+	rows, err := db.Query(query)
 
 	if err != nil {
 		log.Fatal(err)
@@ -108,11 +108,11 @@ func CallProductSimpleSelection(page int) []model.EntProductList {
 
 	if page == 0 {
 
-		rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id")
+		rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, p.price, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id")
 
 	} else {
 
-		rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id LIMIT " + strconv.Itoa(firstnumber-1) + ", 12")
+		rows, err = db.Query("SELECT pl.id, p.name, pl.thumbnail, p.price, pl.productUrl, pl.seller_id, s.seller_name, pl.category_id, c.name, pl.is_used FROM product_list pl ,product p ,category c ,seller s where p.id = pl.id AND s.id = pl.seller_id AND pl.category_id = c.id LIMIT " + strconv.Itoa(firstnumber-1) + ", 12")
 
 	}
 
@@ -123,7 +123,7 @@ func CallProductSimpleSelection(page int) []model.EntProductList {
 	defer rows.Close()
 
 	for rows.Next() {
-		err := rows.Scan(&result.Id, &result.ProductName, &result.Thumbnail, &result.ProductUrl, &result.Seller_id, &result.Seller_name, &result.Category_id, &result.Category_name, &result.Is_used)
+		err := rows.Scan(&result.Id, &result.ProductName, &result.Thumbnail, &result.ProductPrice, &result.ProductUrl, &result.Seller_id, &result.Seller_name, &result.Category_id, &result.Category_name, &result.Is_used)
 		if err != nil {
 			log.Fatal(err)
 		}

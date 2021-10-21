@@ -22,6 +22,7 @@ type EntProductList struct {
 	ProductName   string
 	Thumbnail     string
 	ProductUrl    string
+	ProductPrice  int
 	Seller_id     int
 	Seller_name   string
 	Category_id   int

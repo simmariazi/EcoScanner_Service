@@ -251,6 +251,34 @@ var doc = `{
                 }
             }
         },
+        "/product/search/{productName}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "상품 검색",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "검색할 상품 이름",
+                        "name": "productName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
         "/product/{productId}": {
             "get": {
                 "consumes": [

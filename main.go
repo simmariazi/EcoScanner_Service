@@ -33,7 +33,7 @@ func main() {
 	r.GET("user/member", apis.GetMembers)
 
 	// Seller
-	r.GET("/seller/get", apis.GetSellers)
+	r.GET("/seller", apis.GetSellers)
 
 	// Product
 	r.GET("/productsimple", apis.GetProducts)
