@@ -30,7 +30,7 @@ func main() {
 	r := gin.Default()
 	useApp(r)
 	// User
-	r.GET("user/member", apis.GetMembers)
+	r.GET("/member", apis.GetMembers)
 
 	// Seller
 	r.GET("/seller", apis.GetSellers)
