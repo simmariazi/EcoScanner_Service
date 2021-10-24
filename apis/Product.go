@@ -24,7 +24,7 @@ func GetProducts(c *gin.Context) {
 }
 
 // GetWishList godoc
-// @tags Product
+// @tags User
 // @summary 찜 목록 조회
 // @Param memberNo path int true "회원 번호"
 // @Accept  json
@@ -38,7 +38,7 @@ func GetWishList(c *gin.Context) {
 }
 
 // AddWishListProduct godoc
-// @tags Product
+// @tags User
 // @summary 찜 상품 추가
 // @Param memberNo query int true "회원 번호"
 // @Param productId query int true "SKU"
@@ -54,7 +54,7 @@ func AddwishListProduct(c *gin.Context) {
 }
 
 // AddWishListSeller godoc
-// @tags Product
+// @tags User
 // @summary 찜 기업 추가
 // @Param memberNo query int true "회원 번호"
 // @Param sellerId query int true "기업 번호"
@@ -70,7 +70,7 @@ func AddwishListSeller(c *gin.Context) {
 }
 
 // DeleteWishList godoc
-// @tags Product
+// @tags User
 // @summary 찜 목록 삭제
 // @Param memberNo path int true "회원 번호"
 // @Param itemtype path string true "상품 or 기업 선택"
