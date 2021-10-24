@@ -346,7 +346,7 @@ paths:
           description: Success
       summary: 찜 목록 조회
       tags:
-      - Product
+      - User
   /wishlist/{type}/{memberno}:
     delete:
       consumes:
@@ -379,7 +379,7 @@ paths:
           description: Success
       summary: 찜 목록 삭제
       tags:
-      - Product
+      - User
   /wishlist/product:
     put:
       consumes:
@@ -402,7 +402,7 @@ paths:
           description: Success
       summary: 찜 상품 추가
       tags:
-      - Product
+      - User
   /wishlist/seller:
     put:
       consumes:
@@ -425,5 +425,5 @@ paths:
           description: Success
       summary: 찜 기업 추가
       tags:
-      - Product
+      - User
 swagger: "2.0"

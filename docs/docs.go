@@ -532,7 +532,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Product"
+                    "User"
                 ],
                 "summary": "찜 상품 추가",
                 "parameters": [
@@ -567,7 +567,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Product"
+                    "User"
                 ],
                 "summary": "찜 기업 추가",
                 "parameters": [
@@ -602,7 +602,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Product"
+                    "User"
                 ],
                 "summary": "찜 목록 조회",
                 "parameters": [
@@ -630,7 +630,7 @@ var doc = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Product"
+                    "User"
                 ],
                 "summary": "찜 목록 삭제",
                 "parameters": [
